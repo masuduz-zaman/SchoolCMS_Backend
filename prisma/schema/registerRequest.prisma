@@ -1,0 +1,24 @@
+model RegistrationRequest {
+  id          String         @id @default(uuid())
+  name        String
+  email       String
+  phone       String?
+  password    String
+  classRoll   String?
+
+  requestType RequestType
+  status      RequestStatus  @default(PENDING)
+
+  classId     String?
+  parentPhone String?
+
+  class       Class?        @relation(fields: [classId], references: [id])
+
+  reviewNote  String?
+  reviewedAt  DateTime?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@index([email, status])
+  @@index([requestType, status])
+}

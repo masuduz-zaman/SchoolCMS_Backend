@@ -1,0 +1,14 @@
+model Subject {
+  id        String   @id @default(uuid())
+  name      String
+  classId   String?
+
+  class Class? @relation(fields: [classId], references: [id])
+
+  routines  ClassRoutine[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([classId, name])
+}

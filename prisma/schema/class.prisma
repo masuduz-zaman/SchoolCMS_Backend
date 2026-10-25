@@ -1,0 +1,20 @@
+model Class {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String?
+
+  students    Student[]
+  subjects    Subject[]
+  assignments TeacherClass[]
+  routines    ClassRoutine[]
+
+  classTeacherId String?
+  classTeacher   Teacher? @relation("ClassTeacher", fields: [classTeacherId], references: [id])
+
+  registrationRequests RegistrationRequest[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([classTeacherId])
+}

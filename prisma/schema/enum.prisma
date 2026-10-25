@@ -1,0 +1,33 @@
+enum UserRole {
+  ADMIN
+  STUDENT
+  TEACHER
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+}
+
+enum RequestType {
+  STUDENT
+  TEACHER
+}
+
+enum RequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+  BLOCKED
+}
+
+enum WeekDay {
+  SATURDAY
+  SUNDAY
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+}
