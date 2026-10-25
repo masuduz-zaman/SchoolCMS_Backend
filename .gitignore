@@ -1,5 +1,5 @@
-node_module
-dist
-generated
+# node_module
+# dist
+# generated
 
-/generated/prisma
+# /generated/prisma

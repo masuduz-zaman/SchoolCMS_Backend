@@ -1,0 +1,1176 @@
+import type * as runtime from "@prisma/client/runtime/client";
+import type * as Prisma from "../internal/prismaNamespace";
+/**
+ * Model SchoolContent
+ *
+ */
+export type SchoolContentModel = runtime.Types.Result.DefaultSelection<Prisma.$SchoolContentPayload>;
+export type AggregateSchoolContent = {
+    _count: SchoolContentCountAggregateOutputType | null;
+    _min: SchoolContentMinAggregateOutputType | null;
+    _max: SchoolContentMaxAggregateOutputType | null;
+};
+export type SchoolContentMinAggregateOutputType = {
+    id: string | null;
+    headTeacherMessage: string | null;
+    updatedById: string | null;
+    createdAt: Date | null;
+    updatedAt: Date | null;
+};
+export type SchoolContentMaxAggregateOutputType = {
+    id: string | null;
+    headTeacherMessage: string | null;
+    updatedById: string | null;
+    createdAt: Date | null;
+    updatedAt: Date | null;
+};
+export type SchoolContentCountAggregateOutputType = {
+    id: number;
+    headTeacherMessage: number;
+    updatedById: number;
+    createdAt: number;
+    updatedAt: number;
+    _all: number;
+};
+export type SchoolContentMinAggregateInputType = {
+    id?: true;
+    headTeacherMessage?: true;
+    updatedById?: true;
+    createdAt?: true;
+    updatedAt?: true;
+};
+export type SchoolContentMaxAggregateInputType = {
+    id?: true;
+    headTeacherMessage?: true;
+    updatedById?: true;
+    createdAt?: true;
+    updatedAt?: true;
+};
+export type SchoolContentCountAggregateInputType = {
+    id?: true;
+    headTeacherMessage?: true;
+    updatedById?: true;
+    createdAt?: true;
+    updatedAt?: true;
+    _all?: true;
+};
+export type SchoolContentAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which SchoolContent to aggregate.
+     */
+    where?: Prisma.SchoolContentWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of SchoolContents to fetch.
+     */
+    orderBy?: Prisma.SchoolContentOrderByWithRelationInput | Prisma.SchoolContentOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the start position
+     */
+    cursor?: Prisma.SchoolContentWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` SchoolContents from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` SchoolContents.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Count returned SchoolContents
+    **/
+    _count?: true | SchoolContentCountAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the minimum value
+    **/
+    _min?: SchoolContentMinAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the maximum value
+    **/
+    _max?: SchoolContentMaxAggregateInputType;
+};
+export type GetSchoolContentAggregateType<T extends SchoolContentAggregateArgs> = {
+    [P in keyof T & keyof AggregateSchoolContent]: P extends '_count' | 'count' ? T[P] extends true ? number : Prisma.GetScalarType<T[P], AggregateSchoolContent[P]> : Prisma.GetScalarType<T[P], AggregateSchoolContent[P]>;
+};
+export type SchoolContentGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.SchoolContentWhereInput;
+    orderBy?: Prisma.SchoolContentOrderByWithAggregationInput | Prisma.SchoolContentOrderByWithAggregationInput[];
+    by: Prisma.SchoolContentScalarFieldEnum[] | Prisma.SchoolContentScalarFieldEnum;
+    having?: Prisma.SchoolContentScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: SchoolContentCountAggregateInputType | true;
+    _min?: SchoolContentMinAggregateInputType;
+    _max?: SchoolContentMaxAggregateInputType;
+};
+export type SchoolContentGroupByOutputType = {
+    id: string;
+    headTeacherMessage: string;
+    updatedById: string;
+    createdAt: Date;
+    updatedAt: Date;
+    _count: SchoolContentCountAggregateOutputType | null;
+    _min: SchoolContentMinAggregateOutputType | null;
+    _max: SchoolContentMaxAggregateOutputType | null;
+};
+export type GetSchoolContentGroupByPayload<T extends SchoolContentGroupByArgs> = Prisma.PrismaPromise<Array<Prisma.PickEnumerable<SchoolContentGroupByOutputType, T['by']> & {
+    [P in ((keyof T) & (keyof SchoolContentGroupByOutputType))]: P extends '_count' ? T[P] extends boolean ? number : Prisma.GetScalarType<T[P], SchoolContentGroupByOutputType[P]> : Prisma.GetScalarType<T[P], SchoolContentGroupByOutputType[P]>;
+}>>;
+export type SchoolContentWhereInput = {
+    AND?: Prisma.SchoolContentWhereInput | Prisma.SchoolContentWhereInput[];
+    OR?: Prisma.SchoolContentWhereInput[];
+    NOT?: Prisma.SchoolContentWhereInput | Prisma.SchoolContentWhereInput[];
+    id?: Prisma.StringFilter<"SchoolContent"> | string;
+    headTeacherMessage?: Prisma.StringFilter<"SchoolContent"> | string;
+    updatedById?: Prisma.StringFilter<"SchoolContent"> | string;
+    createdAt?: Prisma.DateTimeFilter<"SchoolContent"> | Date | string;
+    updatedAt?: Prisma.DateTimeFilter<"SchoolContent"> | Date | string;
+    updateBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+};
+export type SchoolContentOrderByWithRelationInput = {
+    id?: Prisma.SortOrder;
+    headTeacherMessage?: Prisma.SortOrder;
+    updatedById?: Prisma.SortOrder;
+    createdAt?: Prisma.SortOrder;
+    updatedAt?: Prisma.SortOrder;
+    updateBy?: Prisma.UserOrderByWithRelationInput;
+};
+export type SchoolContentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string;
+    AND?: Prisma.SchoolContentWhereInput | Prisma.SchoolContentWhereInput[];
+    OR?: Prisma.SchoolContentWhereInput[];
+    NOT?: Prisma.SchoolContentWhereInput | Prisma.SchoolContentWhereInput[];
+    headTeacherMessage?: Prisma.StringFilter<"SchoolContent"> | string;
+    updatedById?: Prisma.StringFilter<"SchoolContent"> | string;
+    createdAt?: Prisma.DateTimeFilter<"SchoolContent"> | Date | string;
+    updatedAt?: Prisma.DateTimeFilter<"SchoolContent"> | Date | string;
+    updateBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+}, "id">;
+export type SchoolContentOrderByWithAggregationInput = {
+    id?: Prisma.SortOrder;
+    headTeacherMessage?: Prisma.SortOrder;
+    updatedById?: Prisma.SortOrder;
+    createdAt?: Prisma.SortOrder;
+    updatedAt?: Prisma.SortOrder;
+    _count?: Prisma.SchoolContentCountOrderByAggregateInput;
+    _max?: Prisma.SchoolContentMaxOrderByAggregateInput;
+    _min?: Prisma.SchoolContentMinOrderByAggregateInput;
+};
+export type SchoolContentScalarWhereWithAggregatesInput = {
+    AND?: Prisma.SchoolContentScalarWhereWithAggregatesInput | Prisma.SchoolContentScalarWhereWithAggregatesInput[];
+    OR?: Prisma.SchoolContentScalarWhereWithAggregatesInput[];
+    NOT?: Prisma.SchoolContentScalarWhereWithAggregatesInput | Prisma.SchoolContentScalarWhereWithAggregatesInput[];
+    id?: Prisma.StringWithAggregatesFilter<"SchoolContent"> | string;
+    headTeacherMessage?: Prisma.StringWithAggregatesFilter<"SchoolContent"> | string;
+    updatedById?: Prisma.StringWithAggregatesFilter<"SchoolContent"> | string;
+    createdAt?: Prisma.DateTimeWithAggregatesFilter<"SchoolContent"> | Date | string;
+    updatedAt?: Prisma.DateTimeWithAggregatesFilter<"SchoolContent"> | Date | string;
+};
+export type SchoolContentCreateInput = {
+    id?: string;
+    headTeacherMessage: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    updateBy: Prisma.UserCreateNestedOneWithoutContentUpdatesInput;
+};
+export type SchoolContentUncheckedCreateInput = {
+    id?: string;
+    headTeacherMessage: string;
+    updatedById: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+};
+export type SchoolContentUpdateInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    headTeacherMessage?: Prisma.StringFieldUpdateOperationsInput | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updateBy?: Prisma.UserUpdateOneRequiredWithoutContentUpdatesNestedInput;
+};
+export type SchoolContentUncheckedUpdateInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    headTeacherMessage?: Prisma.StringFieldUpdateOperationsInput | string;
+    updatedById?: Prisma.StringFieldUpdateOperationsInput | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+export type SchoolContentCreateManyInput = {
+    id?: string;
+    headTeacherMessage: string;
+    updatedById: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+};
+export type SchoolContentUpdateManyMutationInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    headTeacherMessage?: Prisma.StringFieldUpdateOperationsInput | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+export type SchoolContentUncheckedUpdateManyInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    headTeacherMessage?: Prisma.StringFieldUpdateOperationsInput | string;
+    updatedById?: Prisma.StringFieldUpdateOperationsInput | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+export type SchoolContentCountOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    headTeacherMessage?: Prisma.SortOrder;
+    updatedById?: Prisma.SortOrder;
+    createdAt?: Prisma.SortOrder;
+    updatedAt?: Prisma.SortOrder;
+};
+export type SchoolContentMaxOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    headTeacherMessage?: Prisma.SortOrder;
+    updatedById?: Prisma.SortOrder;
+    createdAt?: Prisma.SortOrder;
+    updatedAt?: Prisma.SortOrder;
+};
+export type SchoolContentMinOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    headTeacherMessage?: Prisma.SortOrder;
+    updatedById?: Prisma.SortOrder;
+    createdAt?: Prisma.SortOrder;
+    updatedAt?: Prisma.SortOrder;
+};
+export type SchoolContentListRelationFilter = {
+    every?: Prisma.SchoolContentWhereInput;
+    some?: Prisma.SchoolContentWhereInput;
+    none?: Prisma.SchoolContentWhereInput;
+};
+export type SchoolContentOrderByRelationAggregateInput = {
+    _count?: Prisma.SortOrder;
+};
+export type SchoolContentCreateNestedManyWithoutUpdateByInput = {
+    create?: Prisma.XOR<Prisma.SchoolContentCreateWithoutUpdateByInput, Prisma.SchoolContentUncheckedCreateWithoutUpdateByInput> | Prisma.SchoolContentCreateWithoutUpdateByInput[] | Prisma.SchoolContentUncheckedCreateWithoutUpdateByInput[];
+    connectOrCreate?: Prisma.SchoolContentCreateOrConnectWithoutUpdateByInput | Prisma.SchoolContentCreateOrConnectWithoutUpdateByInput[];
+    createMany?: Prisma.SchoolContentCreateManyUpdateByInputEnvelope;
+    connect?: Prisma.SchoolContentWhereUniqueInput | Prisma.SchoolContentWhereUniqueInput[];
+};
+export type SchoolContentUncheckedCreateNestedManyWithoutUpdateByInput = {
+    create?: Prisma.XOR<Prisma.SchoolContentCreateWithoutUpdateByInput, Prisma.SchoolContentUncheckedCreateWithoutUpdateByInput> | Prisma.SchoolContentCreateWithoutUpdateByInput[] | Prisma.SchoolContentUncheckedCreateWithoutUpdateByInput[];
+    connectOrCreate?: Prisma.SchoolContentCreateOrConnectWithoutUpdateByInput | Prisma.SchoolContentCreateOrConnectWithoutUpdateByInput[];
+    createMany?: Prisma.SchoolContentCreateManyUpdateByInputEnvelope;
+    connect?: Prisma.SchoolContentWhereUniqueInput | Prisma.SchoolContentWhereUniqueInput[];
+};
+export type SchoolContentUpdateManyWithoutUpdateByNestedInput = {
+    create?: Prisma.XOR<Prisma.SchoolContentCreateWithoutUpdateByInput, Prisma.SchoolContentUncheckedCreateWithoutUpdateByInput> | Prisma.SchoolContentCreateWithoutUpdateByInput[] | Prisma.SchoolContentUncheckedCreateWithoutUpdateByInput[];
+    connectOrCreate?: Prisma.SchoolContentCreateOrConnectWithoutUpdateByInput | Prisma.SchoolContentCreateOrConnectWithoutUpdateByInput[];
+    upsert?: Prisma.SchoolContentUpsertWithWhereUniqueWithoutUpdateByInput | Prisma.SchoolContentUpsertWithWhereUniqueWithoutUpdateByInput[];
+    createMany?: Prisma.SchoolContentCreateManyUpdateByInputEnvelope;
+    set?: Prisma.SchoolContentWhereUniqueInput | Prisma.SchoolContentWhereUniqueInput[];
+    disconnect?: Prisma.SchoolContentWhereUniqueInput | Prisma.SchoolContentWhereUniqueInput[];
+    delete?: Prisma.SchoolContentWhereUniqueInput | Prisma.SchoolContentWhereUniqueInput[];
+    connect?: Prisma.SchoolContentWhereUniqueInput | Prisma.SchoolContentWhereUniqueInput[];
+    update?: Prisma.SchoolContentUpdateWithWhereUniqueWithoutUpdateByInput | Prisma.SchoolContentUpdateWithWhereUniqueWithoutUpdateByInput[];
+    updateMany?: Prisma.SchoolContentUpdateManyWithWhereWithoutUpdateByInput | Prisma.SchoolContentUpdateManyWithWhereWithoutUpdateByInput[];
+    deleteMany?: Prisma.SchoolContentScalarWhereInput | Prisma.SchoolContentScalarWhereInput[];
+};
+export type SchoolContentUncheckedUpdateManyWithoutUpdateByNestedInput = {
+    create?: Prisma.XOR<Prisma.SchoolContentCreateWithoutUpdateByInput, Prisma.SchoolContentUncheckedCreateWithoutUpdateByInput> | Prisma.SchoolContentCreateWithoutUpdateByInput[] | Prisma.SchoolContentUncheckedCreateWithoutUpdateByInput[];
+    connectOrCreate?: Prisma.SchoolContentCreateOrConnectWithoutUpdateByInput | Prisma.SchoolContentCreateOrConnectWithoutUpdateByInput[];
+    upsert?: Prisma.SchoolContentUpsertWithWhereUniqueWithoutUpdateByInput | Prisma.SchoolContentUpsertWithWhereUniqueWithoutUpdateByInput[];
+    createMany?: Prisma.SchoolContentCreateManyUpdateByInputEnvelope;
+    set?: Prisma.SchoolContentWhereUniqueInput | Prisma.SchoolContentWhereUniqueInput[];
+    disconnect?: Prisma.SchoolContentWhereUniqueInput | Prisma.SchoolContentWhereUniqueInput[];
+    delete?: Prisma.SchoolContentWhereUniqueInput | Prisma.SchoolContentWhereUniqueInput[];
+    connect?: Prisma.SchoolContentWhereUniqueInput | Prisma.SchoolContentWhereUniqueInput[];
+    update?: Prisma.SchoolContentUpdateWithWhereUniqueWithoutUpdateByInput | Prisma.SchoolContentUpdateWithWhereUniqueWithoutUpdateByInput[];
+    updateMany?: Prisma.SchoolContentUpdateManyWithWhereWithoutUpdateByInput | Prisma.SchoolContentUpdateManyWithWhereWithoutUpdateByInput[];
+    deleteMany?: Prisma.SchoolContentScalarWhereInput | Prisma.SchoolContentScalarWhereInput[];
+};
+export type SchoolContentCreateWithoutUpdateByInput = {
+    id?: string;
+    headTeacherMessage: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+};
+export type SchoolContentUncheckedCreateWithoutUpdateByInput = {
+    id?: string;
+    headTeacherMessage: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+};
+export type SchoolContentCreateOrConnectWithoutUpdateByInput = {
+    where: Prisma.SchoolContentWhereUniqueInput;
+    create: Prisma.XOR<Prisma.SchoolContentCreateWithoutUpdateByInput, Prisma.SchoolContentUncheckedCreateWithoutUpdateByInput>;
+};
+export type SchoolContentCreateManyUpdateByInputEnvelope = {
+    data: Prisma.SchoolContentCreateManyUpdateByInput | Prisma.SchoolContentCreateManyUpdateByInput[];
+    skipDuplicates?: boolean;
+};
+export type SchoolContentUpsertWithWhereUniqueWithoutUpdateByInput = {
+    where: Prisma.SchoolContentWhereUniqueInput;
+    update: Prisma.XOR<Prisma.SchoolContentUpdateWithoutUpdateByInput, Prisma.SchoolContentUncheckedUpdateWithoutUpdateByInput>;
+    create: Prisma.XOR<Prisma.SchoolContentCreateWithoutUpdateByInput, Prisma.SchoolContentUncheckedCreateWithoutUpdateByInput>;
+};
+export type SchoolContentUpdateWithWhereUniqueWithoutUpdateByInput = {
+    where: Prisma.SchoolContentWhereUniqueInput;
+    data: Prisma.XOR<Prisma.SchoolContentUpdateWithoutUpdateByInput, Prisma.SchoolContentUncheckedUpdateWithoutUpdateByInput>;
+};
+export type SchoolContentUpdateManyWithWhereWithoutUpdateByInput = {
+    where: Prisma.SchoolContentScalarWhereInput;
+    data: Prisma.XOR<Prisma.SchoolContentUpdateManyMutationInput, Prisma.SchoolContentUncheckedUpdateManyWithoutUpdateByInput>;
+};
+export type SchoolContentScalarWhereInput = {
+    AND?: Prisma.SchoolContentScalarWhereInput | Prisma.SchoolContentScalarWhereInput[];
+    OR?: Prisma.SchoolContentScalarWhereInput[];
+    NOT?: Prisma.SchoolContentScalarWhereInput | Prisma.SchoolContentScalarWhereInput[];
+    id?: Prisma.StringFilter<"SchoolContent"> | string;
+    headTeacherMessage?: Prisma.StringFilter<"SchoolContent"> | string;
+    updatedById?: Prisma.StringFilter<"SchoolContent"> | string;
+    createdAt?: Prisma.DateTimeFilter<"SchoolContent"> | Date | string;
+    updatedAt?: Prisma.DateTimeFilter<"SchoolContent"> | Date | string;
+};
+export type SchoolContentCreateManyUpdateByInput = {
+    id?: string;
+    headTeacherMessage: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+};
+export type SchoolContentUpdateWithoutUpdateByInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    headTeacherMessage?: Prisma.StringFieldUpdateOperationsInput | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+export type SchoolContentUncheckedUpdateWithoutUpdateByInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    headTeacherMessage?: Prisma.StringFieldUpdateOperationsInput | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+export type SchoolContentUncheckedUpdateManyWithoutUpdateByInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    headTeacherMessage?: Prisma.StringFieldUpdateOperationsInput | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+export type SchoolContentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    headTeacherMessage?: boolean;
+    updatedById?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+    updateBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+}, ExtArgs["result"]["schoolContent"]>;
+export type SchoolContentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    headTeacherMessage?: boolean;
+    updatedById?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+    updateBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+}, ExtArgs["result"]["schoolContent"]>;
+export type SchoolContentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    headTeacherMessage?: boolean;
+    updatedById?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+    updateBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+}, ExtArgs["result"]["schoolContent"]>;
+export type SchoolContentSelectScalar = {
+    id?: boolean;
+    headTeacherMessage?: boolean;
+    updatedById?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+};
+export type SchoolContentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "headTeacherMessage" | "updatedById" | "createdAt" | "updatedAt", ExtArgs["result"]["schoolContent"]>;
+export type SchoolContentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    updateBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+};
+export type SchoolContentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    updateBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+};
+export type SchoolContentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    updateBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+};
+export type $SchoolContentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    name: "SchoolContent";
+    objects: {
+        updateBy: Prisma.$UserPayload<ExtArgs>;
+    };
+    scalars: runtime.Types.Extensions.GetPayloadResult<{
+        id: string;
+        headTeacherMessage: string;
+        updatedById: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }, ExtArgs["result"]["schoolContent"]>;
+    composites: {};
+};
+export type SchoolContentGetPayload<S extends boolean | null | undefined | SchoolContentDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$SchoolContentPayload, S>;
+export type SchoolContentCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = Omit<SchoolContentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: SchoolContentCountAggregateInputType | true;
+};
+export interface SchoolContentDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: {
+        types: Prisma.TypeMap<ExtArgs>['model']['SchoolContent'];
+        meta: {
+            name: 'SchoolContent';
+        };
+    };
+    /**
+     * Find zero or one SchoolContent that matches the filter.
+     * @param {SchoolContentFindUniqueArgs} args - Arguments to find a SchoolContent
+     * @example
+     * // Get one SchoolContent
+     * const schoolContent = await prisma.schoolContent.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SchoolContentFindUniqueArgs>(args: Prisma.SelectSubset<T, SchoolContentFindUniqueArgs<ExtArgs>>): Prisma.Prisma__SchoolContentClient<runtime.Types.Result.GetResult<Prisma.$SchoolContentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find one SchoolContent that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SchoolContentFindUniqueOrThrowArgs} args - Arguments to find a SchoolContent
+     * @example
+     * // Get one SchoolContent
+     * const schoolContent = await prisma.schoolContent.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SchoolContentFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, SchoolContentFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__SchoolContentClient<runtime.Types.Result.GetResult<Prisma.$SchoolContentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first SchoolContent that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SchoolContentFindFirstArgs} args - Arguments to find a SchoolContent
+     * @example
+     * // Get one SchoolContent
+     * const schoolContent = await prisma.schoolContent.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SchoolContentFindFirstArgs>(args?: Prisma.SelectSubset<T, SchoolContentFindFirstArgs<ExtArgs>>): Prisma.Prisma__SchoolContentClient<runtime.Types.Result.GetResult<Prisma.$SchoolContentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first SchoolContent that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SchoolContentFindFirstOrThrowArgs} args - Arguments to find a SchoolContent
+     * @example
+     * // Get one SchoolContent
+     * const schoolContent = await prisma.schoolContent.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SchoolContentFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, SchoolContentFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__SchoolContentClient<runtime.Types.Result.GetResult<Prisma.$SchoolContentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find zero or more SchoolContents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SchoolContentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SchoolContents
+     * const schoolContents = await prisma.schoolContent.findMany()
+     *
+     * // Get first 10 SchoolContents
+     * const schoolContents = await prisma.schoolContent.findMany({ take: 10 })
+     *
+     * // Only select the `id`
+     * const schoolContentWithIdOnly = await prisma.schoolContent.findMany({ select: { id: true } })
+     *
+     */
+    findMany<T extends SchoolContentFindManyArgs>(args?: Prisma.SelectSubset<T, SchoolContentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SchoolContentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>;
+    /**
+     * Create a SchoolContent.
+     * @param {SchoolContentCreateArgs} args - Arguments to create a SchoolContent.
+     * @example
+     * // Create one SchoolContent
+     * const SchoolContent = await prisma.schoolContent.create({
+     *   data: {
+     *     // ... data to create a SchoolContent
+     *   }
+     * })
+     *
+     */
+    create<T extends SchoolContentCreateArgs>(args: Prisma.SelectSubset<T, SchoolContentCreateArgs<ExtArgs>>): Prisma.Prisma__SchoolContentClient<runtime.Types.Result.GetResult<Prisma.$SchoolContentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Create many SchoolContents.
+     * @param {SchoolContentCreateManyArgs} args - Arguments to create many SchoolContents.
+     * @example
+     * // Create many SchoolContents
+     * const schoolContent = await prisma.schoolContent.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     */
+    createMany<T extends SchoolContentCreateManyArgs>(args?: Prisma.SelectSubset<T, SchoolContentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Create many SchoolContents and returns the data saved in the database.
+     * @param {SchoolContentCreateManyAndReturnArgs} args - Arguments to create many SchoolContents.
+     * @example
+     * // Create many SchoolContents
+     * const schoolContent = await prisma.schoolContent.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Create many SchoolContents and only return the `id`
+     * const schoolContentWithIdOnly = await prisma.schoolContent.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    createManyAndReturn<T extends SchoolContentCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, SchoolContentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SchoolContentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>;
+    /**
+     * Delete a SchoolContent.
+     * @param {SchoolContentDeleteArgs} args - Arguments to delete one SchoolContent.
+     * @example
+     * // Delete one SchoolContent
+     * const SchoolContent = await prisma.schoolContent.delete({
+     *   where: {
+     *     // ... filter to delete one SchoolContent
+     *   }
+     * })
+     *
+     */
+    delete<T extends SchoolContentDeleteArgs>(args: Prisma.SelectSubset<T, SchoolContentDeleteArgs<ExtArgs>>): Prisma.Prisma__SchoolContentClient<runtime.Types.Result.GetResult<Prisma.$SchoolContentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Update one SchoolContent.
+     * @param {SchoolContentUpdateArgs} args - Arguments to update one SchoolContent.
+     * @example
+     * // Update one SchoolContent
+     * const schoolContent = await prisma.schoolContent.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    update<T extends SchoolContentUpdateArgs>(args: Prisma.SelectSubset<T, SchoolContentUpdateArgs<ExtArgs>>): Prisma.Prisma__SchoolContentClient<runtime.Types.Result.GetResult<Prisma.$SchoolContentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Delete zero or more SchoolContents.
+     * @param {SchoolContentDeleteManyArgs} args - Arguments to filter SchoolContents to delete.
+     * @example
+     * // Delete a few SchoolContents
+     * const { count } = await prisma.schoolContent.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     *
+     */
+    deleteMany<T extends SchoolContentDeleteManyArgs>(args?: Prisma.SelectSubset<T, SchoolContentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Update zero or more SchoolContents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SchoolContentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SchoolContents
+     * const schoolContent = await prisma.schoolContent.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    updateMany<T extends SchoolContentUpdateManyArgs>(args: Prisma.SelectSubset<T, SchoolContentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Update zero or more SchoolContents and returns the data updated in the database.
+     * @param {SchoolContentUpdateManyAndReturnArgs} args - Arguments to update many SchoolContents.
+     * @example
+     * // Update many SchoolContents
+     * const schoolContent = await prisma.schoolContent.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Update zero or more SchoolContents and only return the `id`
+     * const schoolContentWithIdOnly = await prisma.schoolContent.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    updateManyAndReturn<T extends SchoolContentUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, SchoolContentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SchoolContentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>;
+    /**
+     * Create or update one SchoolContent.
+     * @param {SchoolContentUpsertArgs} args - Arguments to update or create a SchoolContent.
+     * @example
+     * // Update or create a SchoolContent
+     * const schoolContent = await prisma.schoolContent.upsert({
+     *   create: {
+     *     // ... data to create a SchoolContent
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SchoolContent we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SchoolContentUpsertArgs>(args: Prisma.SelectSubset<T, SchoolContentUpsertArgs<ExtArgs>>): Prisma.Prisma__SchoolContentClient<runtime.Types.Result.GetResult<Prisma.$SchoolContentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Count the number of SchoolContents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SchoolContentCountArgs} args - Arguments to filter SchoolContents to count.
+     * @example
+     * // Count the number of SchoolContents
+     * const count = await prisma.schoolContent.count({
+     *   where: {
+     *     // ... the filter for the SchoolContents we want to count
+     *   }
+     * })
+    **/
+    count<T extends SchoolContentCountArgs>(args?: Prisma.Subset<T, SchoolContentCountArgs>): Prisma.PrismaPromise<T extends runtime.Types.Utils.Record<'select', any> ? T['select'] extends true ? number : Prisma.GetScalarType<T['select'], SchoolContentCountAggregateOutputType> : number>;
+    /**
+     * Allows you to perform aggregations operations on a SchoolContent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SchoolContentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SchoolContentAggregateArgs>(args: Prisma.Subset<T, SchoolContentAggregateArgs>): Prisma.PrismaPromise<GetSchoolContentAggregateType<T>>;
+    /**
+     * Group by SchoolContent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SchoolContentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     *
+    **/
+    groupBy<T extends SchoolContentGroupByArgs, HasSelectOrTake extends Prisma.Or<Prisma.Extends<'skip', Prisma.Keys<T>>, Prisma.Extends<'take', Prisma.Keys<T>>>, OrderByArg extends Prisma.True extends HasSelectOrTake ? {
+        orderBy: SchoolContentGroupByArgs['orderBy'];
+    } : {
+        orderBy?: SchoolContentGroupByArgs['orderBy'];
+    }, OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>, ByFields extends Prisma.MaybeTupleToUnion<T['by']>, ByValid extends Prisma.Has<ByFields, OrderFields>, HavingFields extends Prisma.GetHavingFields<T['having']>, HavingValid extends Prisma.Has<ByFields, HavingFields>, ByEmpty extends T['by'] extends never[] ? Prisma.True : Prisma.False, InputErrors extends ByEmpty extends Prisma.True ? `Error: "by" must not be empty.` : HavingValid extends Prisma.False ? {
+        [P in HavingFields]: P extends ByFields ? never : P extends string ? `Error: Field "${P}" used in "having" needs to be provided in "by".` : [
+            Error,
+            'Field ',
+            P,
+            ` in "having" needs to be provided in "by"`
+        ];
+    }[HavingFields] : 'take' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "take", you also need to provide "orderBy"' : 'skip' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "skip", you also need to provide "orderBy"' : ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields]>(args: Prisma.SubsetIntersection<T, SchoolContentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSchoolContentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the SchoolContent model
+     */
+    readonly fields: SchoolContentFieldRefs;
+}
+/**
+ * The delegate class that acts as a "Promise-like" for SchoolContent.
+ * Why is this prefixed with `Prisma__`?
+ * Because we want to prevent naming conflicts as mentioned in
+ * https://github.com/prisma/prisma-client-js/issues/707
+ */
+export interface Prisma__SchoolContentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise";
+    updateBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>;
+}
+/**
+ * Fields of the SchoolContent model
+ */
+export interface SchoolContentFieldRefs {
+    readonly id: Prisma.FieldRef<"SchoolContent", 'String'>;
+    readonly headTeacherMessage: Prisma.FieldRef<"SchoolContent", 'String'>;
+    readonly updatedById: Prisma.FieldRef<"SchoolContent", 'String'>;
+    readonly createdAt: Prisma.FieldRef<"SchoolContent", 'DateTime'>;
+    readonly updatedAt: Prisma.FieldRef<"SchoolContent", 'DateTime'>;
+}
+/**
+ * SchoolContent findUnique
+ */
+export type SchoolContentFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SchoolContent
+     */
+    select?: Prisma.SchoolContentSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the SchoolContent
+     */
+    omit?: Prisma.SchoolContentOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.SchoolContentInclude<ExtArgs> | null;
+    /**
+     * Filter, which SchoolContent to fetch.
+     */
+    where: Prisma.SchoolContentWhereUniqueInput;
+};
+/**
+ * SchoolContent findUniqueOrThrow
+ */
+export type SchoolContentFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SchoolContent
+     */
+    select?: Prisma.SchoolContentSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the SchoolContent
+     */
+    omit?: Prisma.SchoolContentOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.SchoolContentInclude<ExtArgs> | null;
+    /**
+     * Filter, which SchoolContent to fetch.
+     */
+    where: Prisma.SchoolContentWhereUniqueInput;
+};
+/**
+ * SchoolContent findFirst
+ */
+export type SchoolContentFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SchoolContent
+     */
+    select?: Prisma.SchoolContentSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the SchoolContent
+     */
+    omit?: Prisma.SchoolContentOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.SchoolContentInclude<ExtArgs> | null;
+    /**
+     * Filter, which SchoolContent to fetch.
+     */
+    where?: Prisma.SchoolContentWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of SchoolContents to fetch.
+     */
+    orderBy?: Prisma.SchoolContentOrderByWithRelationInput | Prisma.SchoolContentOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for SchoolContents.
+     */
+    cursor?: Prisma.SchoolContentWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` SchoolContents from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` SchoolContents.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of SchoolContents.
+     */
+    distinct?: Prisma.SchoolContentScalarFieldEnum | Prisma.SchoolContentScalarFieldEnum[];
+};
+/**
+ * SchoolContent findFirstOrThrow
+ */
+export type SchoolContentFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SchoolContent
+     */
+    select?: Prisma.SchoolContentSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the SchoolContent
+     */
+    omit?: Prisma.SchoolContentOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.SchoolContentInclude<ExtArgs> | null;
+    /**
+     * Filter, which SchoolContent to fetch.
+     */
+    where?: Prisma.SchoolContentWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of SchoolContents to fetch.
+     */
+    orderBy?: Prisma.SchoolContentOrderByWithRelationInput | Prisma.SchoolContentOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for SchoolContents.
+     */
+    cursor?: Prisma.SchoolContentWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` SchoolContents from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` SchoolContents.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of SchoolContents.
+     */
+    distinct?: Prisma.SchoolContentScalarFieldEnum | Prisma.SchoolContentScalarFieldEnum[];
+};
+/**
+ * SchoolContent findMany
+ */
+export type SchoolContentFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SchoolContent
+     */
+    select?: Prisma.SchoolContentSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the SchoolContent
+     */
+    omit?: Prisma.SchoolContentOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.SchoolContentInclude<ExtArgs> | null;
+    /**
+     * Filter, which SchoolContents to fetch.
+     */
+    where?: Prisma.SchoolContentWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of SchoolContents to fetch.
+     */
+    orderBy?: Prisma.SchoolContentOrderByWithRelationInput | Prisma.SchoolContentOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for listing SchoolContents.
+     */
+    cursor?: Prisma.SchoolContentWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` SchoolContents from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` SchoolContents.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of SchoolContents.
+     */
+    distinct?: Prisma.SchoolContentScalarFieldEnum | Prisma.SchoolContentScalarFieldEnum[];
+};
+/**
+ * SchoolContent create
+ */
+export type SchoolContentCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SchoolContent
+     */
+    select?: Prisma.SchoolContentSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the SchoolContent
+     */
+    omit?: Prisma.SchoolContentOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.SchoolContentInclude<ExtArgs> | null;
+    /**
+     * The data needed to create a SchoolContent.
+     */
+    data: Prisma.XOR<Prisma.SchoolContentCreateInput, Prisma.SchoolContentUncheckedCreateInput>;
+};
+/**
+ * SchoolContent createMany
+ */
+export type SchoolContentCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SchoolContents.
+     */
+    data: Prisma.SchoolContentCreateManyInput | Prisma.SchoolContentCreateManyInput[];
+    skipDuplicates?: boolean;
+};
+/**
+ * SchoolContent createManyAndReturn
+ */
+export type SchoolContentCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SchoolContent
+     */
+    select?: Prisma.SchoolContentSelectCreateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the SchoolContent
+     */
+    omit?: Prisma.SchoolContentOmit<ExtArgs> | null;
+    /**
+     * The data used to create many SchoolContents.
+     */
+    data: Prisma.SchoolContentCreateManyInput | Prisma.SchoolContentCreateManyInput[];
+    skipDuplicates?: boolean;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.SchoolContentIncludeCreateManyAndReturn<ExtArgs> | null;
+};
+/**
+ * SchoolContent update
+ */
+export type SchoolContentUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SchoolContent
+     */
+    select?: Prisma.SchoolContentSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the SchoolContent
+     */
+    omit?: Prisma.SchoolContentOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.SchoolContentInclude<ExtArgs> | null;
+    /**
+     * The data needed to update a SchoolContent.
+     */
+    data: Prisma.XOR<Prisma.SchoolContentUpdateInput, Prisma.SchoolContentUncheckedUpdateInput>;
+    /**
+     * Choose, which SchoolContent to update.
+     */
+    where: Prisma.SchoolContentWhereUniqueInput;
+};
+/**
+ * SchoolContent updateMany
+ */
+export type SchoolContentUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SchoolContents.
+     */
+    data: Prisma.XOR<Prisma.SchoolContentUpdateManyMutationInput, Prisma.SchoolContentUncheckedUpdateManyInput>;
+    /**
+     * Filter which SchoolContents to update
+     */
+    where?: Prisma.SchoolContentWhereInput;
+    /**
+     * Limit how many SchoolContents to update.
+     */
+    limit?: number;
+};
+/**
+ * SchoolContent updateManyAndReturn
+ */
+export type SchoolContentUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SchoolContent
+     */
+    select?: Prisma.SchoolContentSelectUpdateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the SchoolContent
+     */
+    omit?: Prisma.SchoolContentOmit<ExtArgs> | null;
+    /**
+     * The data used to update SchoolContents.
+     */
+    data: Prisma.XOR<Prisma.SchoolContentUpdateManyMutationInput, Prisma.SchoolContentUncheckedUpdateManyInput>;
+    /**
+     * Filter which SchoolContents to update
+     */
+    where?: Prisma.SchoolContentWhereInput;
+    /**
+     * Limit how many SchoolContents to update.
+     */
+    limit?: number;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.SchoolContentIncludeUpdateManyAndReturn<ExtArgs> | null;
+};
+/**
+ * SchoolContent upsert
+ */
+export type SchoolContentUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SchoolContent
+     */
+    select?: Prisma.SchoolContentSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the SchoolContent
+     */
+    omit?: Prisma.SchoolContentOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.SchoolContentInclude<ExtArgs> | null;
+    /**
+     * The filter to search for the SchoolContent to update in case it exists.
+     */
+    where: Prisma.SchoolContentWhereUniqueInput;
+    /**
+     * In case the SchoolContent found by the `where` argument doesn't exist, create a new SchoolContent with this data.
+     */
+    create: Prisma.XOR<Prisma.SchoolContentCreateInput, Prisma.SchoolContentUncheckedCreateInput>;
+    /**
+     * In case the SchoolContent was found with the provided `where` argument, update it with this data.
+     */
+    update: Prisma.XOR<Prisma.SchoolContentUpdateInput, Prisma.SchoolContentUncheckedUpdateInput>;
+};
+/**
+ * SchoolContent delete
+ */
+export type SchoolContentDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SchoolContent
+     */
+    select?: Prisma.SchoolContentSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the SchoolContent
+     */
+    omit?: Prisma.SchoolContentOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.SchoolContentInclude<ExtArgs> | null;
+    /**
+     * Filter which SchoolContent to delete.
+     */
+    where: Prisma.SchoolContentWhereUniqueInput;
+};
+/**
+ * SchoolContent deleteMany
+ */
+export type SchoolContentDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which SchoolContents to delete
+     */
+    where?: Prisma.SchoolContentWhereInput;
+    /**
+     * Limit how many SchoolContents to delete.
+     */
+    limit?: number;
+};
+/**
+ * SchoolContent without action
+ */
+export type SchoolContentDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SchoolContent
+     */
+    select?: Prisma.SchoolContentSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the SchoolContent
+     */
+    omit?: Prisma.SchoolContentOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.SchoolContentInclude<ExtArgs> | null;
+};
+//# sourceMappingURL=SchoolContent.d.ts.map

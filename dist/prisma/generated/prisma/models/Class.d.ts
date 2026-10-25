@@ -1,0 +1,1855 @@
+import type * as runtime from "@prisma/client/runtime/client";
+import type * as Prisma from "../internal/prismaNamespace";
+/**
+ * Model Class
+ *
+ */
+export type ClassModel = runtime.Types.Result.DefaultSelection<Prisma.$ClassPayload>;
+export type AggregateClass = {
+    _count: ClassCountAggregateOutputType | null;
+    _min: ClassMinAggregateOutputType | null;
+    _max: ClassMaxAggregateOutputType | null;
+};
+export type ClassMinAggregateOutputType = {
+    id: string | null;
+    name: string | null;
+    description: string | null;
+    classTeacherId: string | null;
+    createdAt: Date | null;
+    updatedAt: Date | null;
+};
+export type ClassMaxAggregateOutputType = {
+    id: string | null;
+    name: string | null;
+    description: string | null;
+    classTeacherId: string | null;
+    createdAt: Date | null;
+    updatedAt: Date | null;
+};
+export type ClassCountAggregateOutputType = {
+    id: number;
+    name: number;
+    description: number;
+    classTeacherId: number;
+    createdAt: number;
+    updatedAt: number;
+    _all: number;
+};
+export type ClassMinAggregateInputType = {
+    id?: true;
+    name?: true;
+    description?: true;
+    classTeacherId?: true;
+    createdAt?: true;
+    updatedAt?: true;
+};
+export type ClassMaxAggregateInputType = {
+    id?: true;
+    name?: true;
+    description?: true;
+    classTeacherId?: true;
+    createdAt?: true;
+    updatedAt?: true;
+};
+export type ClassCountAggregateInputType = {
+    id?: true;
+    name?: true;
+    description?: true;
+    classTeacherId?: true;
+    createdAt?: true;
+    updatedAt?: true;
+    _all?: true;
+};
+export type ClassAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which Class to aggregate.
+     */
+    where?: Prisma.ClassWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of Classes to fetch.
+     */
+    orderBy?: Prisma.ClassOrderByWithRelationInput | Prisma.ClassOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the start position
+     */
+    cursor?: Prisma.ClassWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` Classes from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` Classes.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Count returned Classes
+    **/
+    _count?: true | ClassCountAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the minimum value
+    **/
+    _min?: ClassMinAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the maximum value
+    **/
+    _max?: ClassMaxAggregateInputType;
+};
+export type GetClassAggregateType<T extends ClassAggregateArgs> = {
+    [P in keyof T & keyof AggregateClass]: P extends '_count' | 'count' ? T[P] extends true ? number : Prisma.GetScalarType<T[P], AggregateClass[P]> : Prisma.GetScalarType<T[P], AggregateClass[P]>;
+};
+export type ClassGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.ClassWhereInput;
+    orderBy?: Prisma.ClassOrderByWithAggregationInput | Prisma.ClassOrderByWithAggregationInput[];
+    by: Prisma.ClassScalarFieldEnum[] | Prisma.ClassScalarFieldEnum;
+    having?: Prisma.ClassScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: ClassCountAggregateInputType | true;
+    _min?: ClassMinAggregateInputType;
+    _max?: ClassMaxAggregateInputType;
+};
+export type ClassGroupByOutputType = {
+    id: string;
+    name: string;
+    description: string | null;
+    classTeacherId: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    _count: ClassCountAggregateOutputType | null;
+    _min: ClassMinAggregateOutputType | null;
+    _max: ClassMaxAggregateOutputType | null;
+};
+export type GetClassGroupByPayload<T extends ClassGroupByArgs> = Prisma.PrismaPromise<Array<Prisma.PickEnumerable<ClassGroupByOutputType, T['by']> & {
+    [P in ((keyof T) & (keyof ClassGroupByOutputType))]: P extends '_count' ? T[P] extends boolean ? number : Prisma.GetScalarType<T[P], ClassGroupByOutputType[P]> : Prisma.GetScalarType<T[P], ClassGroupByOutputType[P]>;
+}>>;
+export type ClassWhereInput = {
+    AND?: Prisma.ClassWhereInput | Prisma.ClassWhereInput[];
+    OR?: Prisma.ClassWhereInput[];
+    NOT?: Prisma.ClassWhereInput | Prisma.ClassWhereInput[];
+    id?: Prisma.StringFilter<"Class"> | string;
+    name?: Prisma.StringFilter<"Class"> | string;
+    description?: Prisma.StringNullableFilter<"Class"> | string | null;
+    classTeacherId?: Prisma.StringNullableFilter<"Class"> | string | null;
+    createdAt?: Prisma.DateTimeFilter<"Class"> | Date | string;
+    updatedAt?: Prisma.DateTimeFilter<"Class"> | Date | string;
+    students?: Prisma.StudentListRelationFilter;
+    subjects?: Prisma.SubjectListRelationFilter;
+    assignments?: Prisma.TeacherClassListRelationFilter;
+    routines?: Prisma.ClassRoutineListRelationFilter;
+    classTeacher?: Prisma.XOR<Prisma.TeacherNullableScalarRelationFilter, Prisma.TeacherWhereInput> | null;
+    registrationRequests?: Prisma.RegistrationRequestListRelationFilter;
+};
+export type ClassOrderByWithRelationInput = {
+    id?: Prisma.SortOrder;
+    name?: Prisma.SortOrder;
+    description?: Prisma.SortOrderInput | Prisma.SortOrder;
+    classTeacherId?: Prisma.SortOrderInput | Prisma.SortOrder;
+    createdAt?: Prisma.SortOrder;
+    updatedAt?: Prisma.SortOrder;
+    students?: Prisma.StudentOrderByRelationAggregateInput;
+    subjects?: Prisma.SubjectOrderByRelationAggregateInput;
+    assignments?: Prisma.TeacherClassOrderByRelationAggregateInput;
+    routines?: Prisma.ClassRoutineOrderByRelationAggregateInput;
+    classTeacher?: Prisma.TeacherOrderByWithRelationInput;
+    registrationRequests?: Prisma.RegistrationRequestOrderByRelationAggregateInput;
+};
+export type ClassWhereUniqueInput = Prisma.AtLeast<{
+    id?: string;
+    name?: string;
+    AND?: Prisma.ClassWhereInput | Prisma.ClassWhereInput[];
+    OR?: Prisma.ClassWhereInput[];
+    NOT?: Prisma.ClassWhereInput | Prisma.ClassWhereInput[];
+    description?: Prisma.StringNullableFilter<"Class"> | string | null;
+    classTeacherId?: Prisma.StringNullableFilter<"Class"> | string | null;
+    createdAt?: Prisma.DateTimeFilter<"Class"> | Date | string;
+    updatedAt?: Prisma.DateTimeFilter<"Class"> | Date | string;
+    students?: Prisma.StudentListRelationFilter;
+    subjects?: Prisma.SubjectListRelationFilter;
+    assignments?: Prisma.TeacherClassListRelationFilter;
+    routines?: Prisma.ClassRoutineListRelationFilter;
+    classTeacher?: Prisma.XOR<Prisma.TeacherNullableScalarRelationFilter, Prisma.TeacherWhereInput> | null;
+    registrationRequests?: Prisma.RegistrationRequestListRelationFilter;
+}, "id" | "name">;
+export type ClassOrderByWithAggregationInput = {
+    id?: Prisma.SortOrder;
+    name?: Prisma.SortOrder;
+    description?: Prisma.SortOrderInput | Prisma.SortOrder;
+    classTeacherId?: Prisma.SortOrderInput | Prisma.SortOrder;
+    createdAt?: Prisma.SortOrder;
+    updatedAt?: Prisma.SortOrder;
+    _count?: Prisma.ClassCountOrderByAggregateInput;
+    _max?: Prisma.ClassMaxOrderByAggregateInput;
+    _min?: Prisma.ClassMinOrderByAggregateInput;
+};
+export type ClassScalarWhereWithAggregatesInput = {
+    AND?: Prisma.ClassScalarWhereWithAggregatesInput | Prisma.ClassScalarWhereWithAggregatesInput[];
+    OR?: Prisma.ClassScalarWhereWithAggregatesInput[];
+    NOT?: Prisma.ClassScalarWhereWithAggregatesInput | Prisma.ClassScalarWhereWithAggregatesInput[];
+    id?: Prisma.StringWithAggregatesFilter<"Class"> | string;
+    name?: Prisma.StringWithAggregatesFilter<"Class"> | string;
+    description?: Prisma.StringNullableWithAggregatesFilter<"Class"> | string | null;
+    classTeacherId?: Prisma.StringNullableWithAggregatesFilter<"Class"> | string | null;
+    createdAt?: Prisma.DateTimeWithAggregatesFilter<"Class"> | Date | string;
+    updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Class"> | Date | string;
+};
+export type ClassCreateInput = {
+    id?: string;
+    name: string;
+    description?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    students?: Prisma.StudentCreateNestedManyWithoutClassInput;
+    subjects?: Prisma.SubjectCreateNestedManyWithoutClassInput;
+    assignments?: Prisma.TeacherClassCreateNestedManyWithoutClassInput;
+    routines?: Prisma.ClassRoutineCreateNestedManyWithoutClassInput;
+    classTeacher?: Prisma.TeacherCreateNestedOneWithoutClassesAsClassTeacherInput;
+    registrationRequests?: Prisma.RegistrationRequestCreateNestedManyWithoutClassInput;
+};
+export type ClassUncheckedCreateInput = {
+    id?: string;
+    name: string;
+    description?: string | null;
+    classTeacherId?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput;
+    subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutClassInput;
+    assignments?: Prisma.TeacherClassUncheckedCreateNestedManyWithoutClassInput;
+    routines?: Prisma.ClassRoutineUncheckedCreateNestedManyWithoutClassInput;
+    registrationRequests?: Prisma.RegistrationRequestUncheckedCreateNestedManyWithoutClassInput;
+};
+export type ClassUpdateInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    students?: Prisma.StudentUpdateManyWithoutClassNestedInput;
+    subjects?: Prisma.SubjectUpdateManyWithoutClassNestedInput;
+    assignments?: Prisma.TeacherClassUpdateManyWithoutClassNestedInput;
+    routines?: Prisma.ClassRoutineUpdateManyWithoutClassNestedInput;
+    classTeacher?: Prisma.TeacherUpdateOneWithoutClassesAsClassTeacherNestedInput;
+    registrationRequests?: Prisma.RegistrationRequestUpdateManyWithoutClassNestedInput;
+};
+export type ClassUncheckedUpdateInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    classTeacherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    students?: Prisma.StudentUncheckedUpdateManyWithoutClassNestedInput;
+    subjects?: Prisma.SubjectUncheckedUpdateManyWithoutClassNestedInput;
+    assignments?: Prisma.TeacherClassUncheckedUpdateManyWithoutClassNestedInput;
+    routines?: Prisma.ClassRoutineUncheckedUpdateManyWithoutClassNestedInput;
+    registrationRequests?: Prisma.RegistrationRequestUncheckedUpdateManyWithoutClassNestedInput;
+};
+export type ClassCreateManyInput = {
+    id?: string;
+    name: string;
+    description?: string | null;
+    classTeacherId?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+};
+export type ClassUpdateManyMutationInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+export type ClassUncheckedUpdateManyInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    classTeacherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+export type ClassCountOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    name?: Prisma.SortOrder;
+    description?: Prisma.SortOrder;
+    classTeacherId?: Prisma.SortOrder;
+    createdAt?: Prisma.SortOrder;
+    updatedAt?: Prisma.SortOrder;
+};
+export type ClassMaxOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    name?: Prisma.SortOrder;
+    description?: Prisma.SortOrder;
+    classTeacherId?: Prisma.SortOrder;
+    createdAt?: Prisma.SortOrder;
+    updatedAt?: Prisma.SortOrder;
+};
+export type ClassMinOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    name?: Prisma.SortOrder;
+    description?: Prisma.SortOrder;
+    classTeacherId?: Prisma.SortOrder;
+    createdAt?: Prisma.SortOrder;
+    updatedAt?: Prisma.SortOrder;
+};
+export type ClassScalarRelationFilter = {
+    is?: Prisma.ClassWhereInput;
+    isNot?: Prisma.ClassWhereInput;
+};
+export type ClassNullableScalarRelationFilter = {
+    is?: Prisma.ClassWhereInput | null;
+    isNot?: Prisma.ClassWhereInput | null;
+};
+export type ClassListRelationFilter = {
+    every?: Prisma.ClassWhereInput;
+    some?: Prisma.ClassWhereInput;
+    none?: Prisma.ClassWhereInput;
+};
+export type ClassOrderByRelationAggregateInput = {
+    _count?: Prisma.SortOrder;
+};
+export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null;
+};
+export type ClassCreateNestedOneWithoutRoutinesInput = {
+    create?: Prisma.XOR<Prisma.ClassCreateWithoutRoutinesInput, Prisma.ClassUncheckedCreateWithoutRoutinesInput>;
+    connectOrCreate?: Prisma.ClassCreateOrConnectWithoutRoutinesInput;
+    connect?: Prisma.ClassWhereUniqueInput;
+};
+export type ClassUpdateOneRequiredWithoutRoutinesNestedInput = {
+    create?: Prisma.XOR<Prisma.ClassCreateWithoutRoutinesInput, Prisma.ClassUncheckedCreateWithoutRoutinesInput>;
+    connectOrCreate?: Prisma.ClassCreateOrConnectWithoutRoutinesInput;
+    upsert?: Prisma.ClassUpsertWithoutRoutinesInput;
+    connect?: Prisma.ClassWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.ClassUpdateToOneWithWhereWithoutRoutinesInput, Prisma.ClassUpdateWithoutRoutinesInput>, Prisma.ClassUncheckedUpdateWithoutRoutinesInput>;
+};
+export type ClassCreateNestedOneWithoutAssignmentsInput = {
+    create?: Prisma.XOR<Prisma.ClassCreateWithoutAssignmentsInput, Prisma.ClassUncheckedCreateWithoutAssignmentsInput>;
+    connectOrCreate?: Prisma.ClassCreateOrConnectWithoutAssignmentsInput;
+    connect?: Prisma.ClassWhereUniqueInput;
+};
+export type ClassUpdateOneRequiredWithoutAssignmentsNestedInput = {
+    create?: Prisma.XOR<Prisma.ClassCreateWithoutAssignmentsInput, Prisma.ClassUncheckedCreateWithoutAssignmentsInput>;
+    connectOrCreate?: Prisma.ClassCreateOrConnectWithoutAssignmentsInput;
+    upsert?: Prisma.ClassUpsertWithoutAssignmentsInput;
+    connect?: Prisma.ClassWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.ClassUpdateToOneWithWhereWithoutAssignmentsInput, Prisma.ClassUpdateWithoutAssignmentsInput>, Prisma.ClassUncheckedUpdateWithoutAssignmentsInput>;
+};
+export type ClassCreateNestedOneWithoutRegistrationRequestsInput = {
+    create?: Prisma.XOR<Prisma.ClassCreateWithoutRegistrationRequestsInput, Prisma.ClassUncheckedCreateWithoutRegistrationRequestsInput>;
+    connectOrCreate?: Prisma.ClassCreateOrConnectWithoutRegistrationRequestsInput;
+    connect?: Prisma.ClassWhereUniqueInput;
+};
+export type ClassUpdateOneWithoutRegistrationRequestsNestedInput = {
+    create?: Prisma.XOR<Prisma.ClassCreateWithoutRegistrationRequestsInput, Prisma.ClassUncheckedCreateWithoutRegistrationRequestsInput>;
+    connectOrCreate?: Prisma.ClassCreateOrConnectWithoutRegistrationRequestsInput;
+    upsert?: Prisma.ClassUpsertWithoutRegistrationRequestsInput;
+    disconnect?: Prisma.ClassWhereInput | boolean;
+    delete?: Prisma.ClassWhereInput | boolean;
+    connect?: Prisma.ClassWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.ClassUpdateToOneWithWhereWithoutRegistrationRequestsInput, Prisma.ClassUpdateWithoutRegistrationRequestsInput>, Prisma.ClassUncheckedUpdateWithoutRegistrationRequestsInput>;
+};
+export type ClassCreateNestedOneWithoutStudentsInput = {
+    create?: Prisma.XOR<Prisma.ClassCreateWithoutStudentsInput, Prisma.ClassUncheckedCreateWithoutStudentsInput>;
+    connectOrCreate?: Prisma.ClassCreateOrConnectWithoutStudentsInput;
+    connect?: Prisma.ClassWhereUniqueInput;
+};
+export type ClassUpdateOneRequiredWithoutStudentsNestedInput = {
+    create?: Prisma.XOR<Prisma.ClassCreateWithoutStudentsInput, Prisma.ClassUncheckedCreateWithoutStudentsInput>;
+    connectOrCreate?: Prisma.ClassCreateOrConnectWithoutStudentsInput;
+    upsert?: Prisma.ClassUpsertWithoutStudentsInput;
+    connect?: Prisma.ClassWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.ClassUpdateToOneWithWhereWithoutStudentsInput, Prisma.ClassUpdateWithoutStudentsInput>, Prisma.ClassUncheckedUpdateWithoutStudentsInput>;
+};
+export type ClassCreateNestedOneWithoutSubjectsInput = {
+    create?: Prisma.XOR<Prisma.ClassCreateWithoutSubjectsInput, Prisma.ClassUncheckedCreateWithoutSubjectsInput>;
+    connectOrCreate?: Prisma.ClassCreateOrConnectWithoutSubjectsInput;
+    connect?: Prisma.ClassWhereUniqueInput;
+};
+export type ClassUpdateOneRequiredWithoutSubjectsNestedInput = {
+    create?: Prisma.XOR<Prisma.ClassCreateWithoutSubjectsInput, Prisma.ClassUncheckedCreateWithoutSubjectsInput>;
+    connectOrCreate?: Prisma.ClassCreateOrConnectWithoutSubjectsInput;
+    upsert?: Prisma.ClassUpsertWithoutSubjectsInput;
+    connect?: Prisma.ClassWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.ClassUpdateToOneWithWhereWithoutSubjectsInput, Prisma.ClassUpdateWithoutSubjectsInput>, Prisma.ClassUncheckedUpdateWithoutSubjectsInput>;
+};
+export type ClassCreateNestedManyWithoutClassTeacherInput = {
+    create?: Prisma.XOR<Prisma.ClassCreateWithoutClassTeacherInput, Prisma.ClassUncheckedCreateWithoutClassTeacherInput> | Prisma.ClassCreateWithoutClassTeacherInput[] | Prisma.ClassUncheckedCreateWithoutClassTeacherInput[];
+    connectOrCreate?: Prisma.ClassCreateOrConnectWithoutClassTeacherInput | Prisma.ClassCreateOrConnectWithoutClassTeacherInput[];
+    createMany?: Prisma.ClassCreateManyClassTeacherInputEnvelope;
+    connect?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[];
+};
+export type ClassUncheckedCreateNestedManyWithoutClassTeacherInput = {
+    create?: Prisma.XOR<Prisma.ClassCreateWithoutClassTeacherInput, Prisma.ClassUncheckedCreateWithoutClassTeacherInput> | Prisma.ClassCreateWithoutClassTeacherInput[] | Prisma.ClassUncheckedCreateWithoutClassTeacherInput[];
+    connectOrCreate?: Prisma.ClassCreateOrConnectWithoutClassTeacherInput | Prisma.ClassCreateOrConnectWithoutClassTeacherInput[];
+    createMany?: Prisma.ClassCreateManyClassTeacherInputEnvelope;
+    connect?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[];
+};
+export type ClassUpdateManyWithoutClassTeacherNestedInput = {
+    create?: Prisma.XOR<Prisma.ClassCreateWithoutClassTeacherInput, Prisma.ClassUncheckedCreateWithoutClassTeacherInput> | Prisma.ClassCreateWithoutClassTeacherInput[] | Prisma.ClassUncheckedCreateWithoutClassTeacherInput[];
+    connectOrCreate?: Prisma.ClassCreateOrConnectWithoutClassTeacherInput | Prisma.ClassCreateOrConnectWithoutClassTeacherInput[];
+    upsert?: Prisma.ClassUpsertWithWhereUniqueWithoutClassTeacherInput | Prisma.ClassUpsertWithWhereUniqueWithoutClassTeacherInput[];
+    createMany?: Prisma.ClassCreateManyClassTeacherInputEnvelope;
+    set?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[];
+    disconnect?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[];
+    delete?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[];
+    connect?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[];
+    update?: Prisma.ClassUpdateWithWhereUniqueWithoutClassTeacherInput | Prisma.ClassUpdateWithWhereUniqueWithoutClassTeacherInput[];
+    updateMany?: Prisma.ClassUpdateManyWithWhereWithoutClassTeacherInput | Prisma.ClassUpdateManyWithWhereWithoutClassTeacherInput[];
+    deleteMany?: Prisma.ClassScalarWhereInput | Prisma.ClassScalarWhereInput[];
+};
+export type ClassUncheckedUpdateManyWithoutClassTeacherNestedInput = {
+    create?: Prisma.XOR<Prisma.ClassCreateWithoutClassTeacherInput, Prisma.ClassUncheckedCreateWithoutClassTeacherInput> | Prisma.ClassCreateWithoutClassTeacherInput[] | Prisma.ClassUncheckedCreateWithoutClassTeacherInput[];
+    connectOrCreate?: Prisma.ClassCreateOrConnectWithoutClassTeacherInput | Prisma.ClassCreateOrConnectWithoutClassTeacherInput[];
+    upsert?: Prisma.ClassUpsertWithWhereUniqueWithoutClassTeacherInput | Prisma.ClassUpsertWithWhereUniqueWithoutClassTeacherInput[];
+    createMany?: Prisma.ClassCreateManyClassTeacherInputEnvelope;
+    set?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[];
+    disconnect?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[];
+    delete?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[];
+    connect?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[];
+    update?: Prisma.ClassUpdateWithWhereUniqueWithoutClassTeacherInput | Prisma.ClassUpdateWithWhereUniqueWithoutClassTeacherInput[];
+    updateMany?: Prisma.ClassUpdateManyWithWhereWithoutClassTeacherInput | Prisma.ClassUpdateManyWithWhereWithoutClassTeacherInput[];
+    deleteMany?: Prisma.ClassScalarWhereInput | Prisma.ClassScalarWhereInput[];
+};
+export type ClassCreateWithoutRoutinesInput = {
+    id?: string;
+    name: string;
+    description?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    students?: Prisma.StudentCreateNestedManyWithoutClassInput;
+    subjects?: Prisma.SubjectCreateNestedManyWithoutClassInput;
+    assignments?: Prisma.TeacherClassCreateNestedManyWithoutClassInput;
+    classTeacher?: Prisma.TeacherCreateNestedOneWithoutClassesAsClassTeacherInput;
+    registrationRequests?: Prisma.RegistrationRequestCreateNestedManyWithoutClassInput;
+};
+export type ClassUncheckedCreateWithoutRoutinesInput = {
+    id?: string;
+    name: string;
+    description?: string | null;
+    classTeacherId?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput;
+    subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutClassInput;
+    assignments?: Prisma.TeacherClassUncheckedCreateNestedManyWithoutClassInput;
+    registrationRequests?: Prisma.RegistrationRequestUncheckedCreateNestedManyWithoutClassInput;
+};
+export type ClassCreateOrConnectWithoutRoutinesInput = {
+    where: Prisma.ClassWhereUniqueInput;
+    create: Prisma.XOR<Prisma.ClassCreateWithoutRoutinesInput, Prisma.ClassUncheckedCreateWithoutRoutinesInput>;
+};
+export type ClassUpsertWithoutRoutinesInput = {
+    update: Prisma.XOR<Prisma.ClassUpdateWithoutRoutinesInput, Prisma.ClassUncheckedUpdateWithoutRoutinesInput>;
+    create: Prisma.XOR<Prisma.ClassCreateWithoutRoutinesInput, Prisma.ClassUncheckedCreateWithoutRoutinesInput>;
+    where?: Prisma.ClassWhereInput;
+};
+export type ClassUpdateToOneWithWhereWithoutRoutinesInput = {
+    where?: Prisma.ClassWhereInput;
+    data: Prisma.XOR<Prisma.ClassUpdateWithoutRoutinesInput, Prisma.ClassUncheckedUpdateWithoutRoutinesInput>;
+};
+export type ClassUpdateWithoutRoutinesInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    students?: Prisma.StudentUpdateManyWithoutClassNestedInput;
+    subjects?: Prisma.SubjectUpdateManyWithoutClassNestedInput;
+    assignments?: Prisma.TeacherClassUpdateManyWithoutClassNestedInput;
+    classTeacher?: Prisma.TeacherUpdateOneWithoutClassesAsClassTeacherNestedInput;
+    registrationRequests?: Prisma.RegistrationRequestUpdateManyWithoutClassNestedInput;
+};
+export type ClassUncheckedUpdateWithoutRoutinesInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    classTeacherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    students?: Prisma.StudentUncheckedUpdateManyWithoutClassNestedInput;
+    subjects?: Prisma.SubjectUncheckedUpdateManyWithoutClassNestedInput;
+    assignments?: Prisma.TeacherClassUncheckedUpdateManyWithoutClassNestedInput;
+    registrationRequests?: Prisma.RegistrationRequestUncheckedUpdateManyWithoutClassNestedInput;
+};
+export type ClassCreateWithoutAssignmentsInput = {
+    id?: string;
+    name: string;
+    description?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    students?: Prisma.StudentCreateNestedManyWithoutClassInput;
+    subjects?: Prisma.SubjectCreateNestedManyWithoutClassInput;
+    routines?: Prisma.ClassRoutineCreateNestedManyWithoutClassInput;
+    classTeacher?: Prisma.TeacherCreateNestedOneWithoutClassesAsClassTeacherInput;
+    registrationRequests?: Prisma.RegistrationRequestCreateNestedManyWithoutClassInput;
+};
+export type ClassUncheckedCreateWithoutAssignmentsInput = {
+    id?: string;
+    name: string;
+    description?: string | null;
+    classTeacherId?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput;
+    subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutClassInput;
+    routines?: Prisma.ClassRoutineUncheckedCreateNestedManyWithoutClassInput;
+    registrationRequests?: Prisma.RegistrationRequestUncheckedCreateNestedManyWithoutClassInput;
+};
+export type ClassCreateOrConnectWithoutAssignmentsInput = {
+    where: Prisma.ClassWhereUniqueInput;
+    create: Prisma.XOR<Prisma.ClassCreateWithoutAssignmentsInput, Prisma.ClassUncheckedCreateWithoutAssignmentsInput>;
+};
+export type ClassUpsertWithoutAssignmentsInput = {
+    update: Prisma.XOR<Prisma.ClassUpdateWithoutAssignmentsInput, Prisma.ClassUncheckedUpdateWithoutAssignmentsInput>;
+    create: Prisma.XOR<Prisma.ClassCreateWithoutAssignmentsInput, Prisma.ClassUncheckedCreateWithoutAssignmentsInput>;
+    where?: Prisma.ClassWhereInput;
+};
+export type ClassUpdateToOneWithWhereWithoutAssignmentsInput = {
+    where?: Prisma.ClassWhereInput;
+    data: Prisma.XOR<Prisma.ClassUpdateWithoutAssignmentsInput, Prisma.ClassUncheckedUpdateWithoutAssignmentsInput>;
+};
+export type ClassUpdateWithoutAssignmentsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    students?: Prisma.StudentUpdateManyWithoutClassNestedInput;
+    subjects?: Prisma.SubjectUpdateManyWithoutClassNestedInput;
+    routines?: Prisma.ClassRoutineUpdateManyWithoutClassNestedInput;
+    classTeacher?: Prisma.TeacherUpdateOneWithoutClassesAsClassTeacherNestedInput;
+    registrationRequests?: Prisma.RegistrationRequestUpdateManyWithoutClassNestedInput;
+};
+export type ClassUncheckedUpdateWithoutAssignmentsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    classTeacherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    students?: Prisma.StudentUncheckedUpdateManyWithoutClassNestedInput;
+    subjects?: Prisma.SubjectUncheckedUpdateManyWithoutClassNestedInput;
+    routines?: Prisma.ClassRoutineUncheckedUpdateManyWithoutClassNestedInput;
+    registrationRequests?: Prisma.RegistrationRequestUncheckedUpdateManyWithoutClassNestedInput;
+};
+export type ClassCreateWithoutRegistrationRequestsInput = {
+    id?: string;
+    name: string;
+    description?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    students?: Prisma.StudentCreateNestedManyWithoutClassInput;
+    subjects?: Prisma.SubjectCreateNestedManyWithoutClassInput;
+    assignments?: Prisma.TeacherClassCreateNestedManyWithoutClassInput;
+    routines?: Prisma.ClassRoutineCreateNestedManyWithoutClassInput;
+    classTeacher?: Prisma.TeacherCreateNestedOneWithoutClassesAsClassTeacherInput;
+};
+export type ClassUncheckedCreateWithoutRegistrationRequestsInput = {
+    id?: string;
+    name: string;
+    description?: string | null;
+    classTeacherId?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput;
+    subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutClassInput;
+    assignments?: Prisma.TeacherClassUncheckedCreateNestedManyWithoutClassInput;
+    routines?: Prisma.ClassRoutineUncheckedCreateNestedManyWithoutClassInput;
+};
+export type ClassCreateOrConnectWithoutRegistrationRequestsInput = {
+    where: Prisma.ClassWhereUniqueInput;
+    create: Prisma.XOR<Prisma.ClassCreateWithoutRegistrationRequestsInput, Prisma.ClassUncheckedCreateWithoutRegistrationRequestsInput>;
+};
+export type ClassUpsertWithoutRegistrationRequestsInput = {
+    update: Prisma.XOR<Prisma.ClassUpdateWithoutRegistrationRequestsInput, Prisma.ClassUncheckedUpdateWithoutRegistrationRequestsInput>;
+    create: Prisma.XOR<Prisma.ClassCreateWithoutRegistrationRequestsInput, Prisma.ClassUncheckedCreateWithoutRegistrationRequestsInput>;
+    where?: Prisma.ClassWhereInput;
+};
+export type ClassUpdateToOneWithWhereWithoutRegistrationRequestsInput = {
+    where?: Prisma.ClassWhereInput;
+    data: Prisma.XOR<Prisma.ClassUpdateWithoutRegistrationRequestsInput, Prisma.ClassUncheckedUpdateWithoutRegistrationRequestsInput>;
+};
+export type ClassUpdateWithoutRegistrationRequestsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    students?: Prisma.StudentUpdateManyWithoutClassNestedInput;
+    subjects?: Prisma.SubjectUpdateManyWithoutClassNestedInput;
+    assignments?: Prisma.TeacherClassUpdateManyWithoutClassNestedInput;
+    routines?: Prisma.ClassRoutineUpdateManyWithoutClassNestedInput;
+    classTeacher?: Prisma.TeacherUpdateOneWithoutClassesAsClassTeacherNestedInput;
+};
+export type ClassUncheckedUpdateWithoutRegistrationRequestsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    classTeacherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    students?: Prisma.StudentUncheckedUpdateManyWithoutClassNestedInput;
+    subjects?: Prisma.SubjectUncheckedUpdateManyWithoutClassNestedInput;
+    assignments?: Prisma.TeacherClassUncheckedUpdateManyWithoutClassNestedInput;
+    routines?: Prisma.ClassRoutineUncheckedUpdateManyWithoutClassNestedInput;
+};
+export type ClassCreateWithoutStudentsInput = {
+    id?: string;
+    name: string;
+    description?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    subjects?: Prisma.SubjectCreateNestedManyWithoutClassInput;
+    assignments?: Prisma.TeacherClassCreateNestedManyWithoutClassInput;
+    routines?: Prisma.ClassRoutineCreateNestedManyWithoutClassInput;
+    classTeacher?: Prisma.TeacherCreateNestedOneWithoutClassesAsClassTeacherInput;
+    registrationRequests?: Prisma.RegistrationRequestCreateNestedManyWithoutClassInput;
+};
+export type ClassUncheckedCreateWithoutStudentsInput = {
+    id?: string;
+    name: string;
+    description?: string | null;
+    classTeacherId?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutClassInput;
+    assignments?: Prisma.TeacherClassUncheckedCreateNestedManyWithoutClassInput;
+    routines?: Prisma.ClassRoutineUncheckedCreateNestedManyWithoutClassInput;
+    registrationRequests?: Prisma.RegistrationRequestUncheckedCreateNestedManyWithoutClassInput;
+};
+export type ClassCreateOrConnectWithoutStudentsInput = {
+    where: Prisma.ClassWhereUniqueInput;
+    create: Prisma.XOR<Prisma.ClassCreateWithoutStudentsInput, Prisma.ClassUncheckedCreateWithoutStudentsInput>;
+};
+export type ClassUpsertWithoutStudentsInput = {
+    update: Prisma.XOR<Prisma.ClassUpdateWithoutStudentsInput, Prisma.ClassUncheckedUpdateWithoutStudentsInput>;
+    create: Prisma.XOR<Prisma.ClassCreateWithoutStudentsInput, Prisma.ClassUncheckedCreateWithoutStudentsInput>;
+    where?: Prisma.ClassWhereInput;
+};
+export type ClassUpdateToOneWithWhereWithoutStudentsInput = {
+    where?: Prisma.ClassWhereInput;
+    data: Prisma.XOR<Prisma.ClassUpdateWithoutStudentsInput, Prisma.ClassUncheckedUpdateWithoutStudentsInput>;
+};
+export type ClassUpdateWithoutStudentsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    subjects?: Prisma.SubjectUpdateManyWithoutClassNestedInput;
+    assignments?: Prisma.TeacherClassUpdateManyWithoutClassNestedInput;
+    routines?: Prisma.ClassRoutineUpdateManyWithoutClassNestedInput;
+    classTeacher?: Prisma.TeacherUpdateOneWithoutClassesAsClassTeacherNestedInput;
+    registrationRequests?: Prisma.RegistrationRequestUpdateManyWithoutClassNestedInput;
+};
+export type ClassUncheckedUpdateWithoutStudentsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    classTeacherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    subjects?: Prisma.SubjectUncheckedUpdateManyWithoutClassNestedInput;
+    assignments?: Prisma.TeacherClassUncheckedUpdateManyWithoutClassNestedInput;
+    routines?: Prisma.ClassRoutineUncheckedUpdateManyWithoutClassNestedInput;
+    registrationRequests?: Prisma.RegistrationRequestUncheckedUpdateManyWithoutClassNestedInput;
+};
+export type ClassCreateWithoutSubjectsInput = {
+    id?: string;
+    name: string;
+    description?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    students?: Prisma.StudentCreateNestedManyWithoutClassInput;
+    assignments?: Prisma.TeacherClassCreateNestedManyWithoutClassInput;
+    routines?: Prisma.ClassRoutineCreateNestedManyWithoutClassInput;
+    classTeacher?: Prisma.TeacherCreateNestedOneWithoutClassesAsClassTeacherInput;
+    registrationRequests?: Prisma.RegistrationRequestCreateNestedManyWithoutClassInput;
+};
+export type ClassUncheckedCreateWithoutSubjectsInput = {
+    id?: string;
+    name: string;
+    description?: string | null;
+    classTeacherId?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput;
+    assignments?: Prisma.TeacherClassUncheckedCreateNestedManyWithoutClassInput;
+    routines?: Prisma.ClassRoutineUncheckedCreateNestedManyWithoutClassInput;
+    registrationRequests?: Prisma.RegistrationRequestUncheckedCreateNestedManyWithoutClassInput;
+};
+export type ClassCreateOrConnectWithoutSubjectsInput = {
+    where: Prisma.ClassWhereUniqueInput;
+    create: Prisma.XOR<Prisma.ClassCreateWithoutSubjectsInput, Prisma.ClassUncheckedCreateWithoutSubjectsInput>;
+};
+export type ClassUpsertWithoutSubjectsInput = {
+    update: Prisma.XOR<Prisma.ClassUpdateWithoutSubjectsInput, Prisma.ClassUncheckedUpdateWithoutSubjectsInput>;
+    create: Prisma.XOR<Prisma.ClassCreateWithoutSubjectsInput, Prisma.ClassUncheckedCreateWithoutSubjectsInput>;
+    where?: Prisma.ClassWhereInput;
+};
+export type ClassUpdateToOneWithWhereWithoutSubjectsInput = {
+    where?: Prisma.ClassWhereInput;
+    data: Prisma.XOR<Prisma.ClassUpdateWithoutSubjectsInput, Prisma.ClassUncheckedUpdateWithoutSubjectsInput>;
+};
+export type ClassUpdateWithoutSubjectsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    students?: Prisma.StudentUpdateManyWithoutClassNestedInput;
+    assignments?: Prisma.TeacherClassUpdateManyWithoutClassNestedInput;
+    routines?: Prisma.ClassRoutineUpdateManyWithoutClassNestedInput;
+    classTeacher?: Prisma.TeacherUpdateOneWithoutClassesAsClassTeacherNestedInput;
+    registrationRequests?: Prisma.RegistrationRequestUpdateManyWithoutClassNestedInput;
+};
+export type ClassUncheckedUpdateWithoutSubjectsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    classTeacherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    students?: Prisma.StudentUncheckedUpdateManyWithoutClassNestedInput;
+    assignments?: Prisma.TeacherClassUncheckedUpdateManyWithoutClassNestedInput;
+    routines?: Prisma.ClassRoutineUncheckedUpdateManyWithoutClassNestedInput;
+    registrationRequests?: Prisma.RegistrationRequestUncheckedUpdateManyWithoutClassNestedInput;
+};
+export type ClassCreateWithoutClassTeacherInput = {
+    id?: string;
+    name: string;
+    description?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    students?: Prisma.StudentCreateNestedManyWithoutClassInput;
+    subjects?: Prisma.SubjectCreateNestedManyWithoutClassInput;
+    assignments?: Prisma.TeacherClassCreateNestedManyWithoutClassInput;
+    routines?: Prisma.ClassRoutineCreateNestedManyWithoutClassInput;
+    registrationRequests?: Prisma.RegistrationRequestCreateNestedManyWithoutClassInput;
+};
+export type ClassUncheckedCreateWithoutClassTeacherInput = {
+    id?: string;
+    name: string;
+    description?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput;
+    subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutClassInput;
+    assignments?: Prisma.TeacherClassUncheckedCreateNestedManyWithoutClassInput;
+    routines?: Prisma.ClassRoutineUncheckedCreateNestedManyWithoutClassInput;
+    registrationRequests?: Prisma.RegistrationRequestUncheckedCreateNestedManyWithoutClassInput;
+};
+export type ClassCreateOrConnectWithoutClassTeacherInput = {
+    where: Prisma.ClassWhereUniqueInput;
+    create: Prisma.XOR<Prisma.ClassCreateWithoutClassTeacherInput, Prisma.ClassUncheckedCreateWithoutClassTeacherInput>;
+};
+export type ClassCreateManyClassTeacherInputEnvelope = {
+    data: Prisma.ClassCreateManyClassTeacherInput | Prisma.ClassCreateManyClassTeacherInput[];
+    skipDuplicates?: boolean;
+};
+export type ClassUpsertWithWhereUniqueWithoutClassTeacherInput = {
+    where: Prisma.ClassWhereUniqueInput;
+    update: Prisma.XOR<Prisma.ClassUpdateWithoutClassTeacherInput, Prisma.ClassUncheckedUpdateWithoutClassTeacherInput>;
+    create: Prisma.XOR<Prisma.ClassCreateWithoutClassTeacherInput, Prisma.ClassUncheckedCreateWithoutClassTeacherInput>;
+};
+export type ClassUpdateWithWhereUniqueWithoutClassTeacherInput = {
+    where: Prisma.ClassWhereUniqueInput;
+    data: Prisma.XOR<Prisma.ClassUpdateWithoutClassTeacherInput, Prisma.ClassUncheckedUpdateWithoutClassTeacherInput>;
+};
+export type ClassUpdateManyWithWhereWithoutClassTeacherInput = {
+    where: Prisma.ClassScalarWhereInput;
+    data: Prisma.XOR<Prisma.ClassUpdateManyMutationInput, Prisma.ClassUncheckedUpdateManyWithoutClassTeacherInput>;
+};
+export type ClassScalarWhereInput = {
+    AND?: Prisma.ClassScalarWhereInput | Prisma.ClassScalarWhereInput[];
+    OR?: Prisma.ClassScalarWhereInput[];
+    NOT?: Prisma.ClassScalarWhereInput | Prisma.ClassScalarWhereInput[];
+    id?: Prisma.StringFilter<"Class"> | string;
+    name?: Prisma.StringFilter<"Class"> | string;
+    description?: Prisma.StringNullableFilter<"Class"> | string | null;
+    classTeacherId?: Prisma.StringNullableFilter<"Class"> | string | null;
+    createdAt?: Prisma.DateTimeFilter<"Class"> | Date | string;
+    updatedAt?: Prisma.DateTimeFilter<"Class"> | Date | string;
+};
+export type ClassCreateManyClassTeacherInput = {
+    id?: string;
+    name: string;
+    description?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+};
+export type ClassUpdateWithoutClassTeacherInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    students?: Prisma.StudentUpdateManyWithoutClassNestedInput;
+    subjects?: Prisma.SubjectUpdateManyWithoutClassNestedInput;
+    assignments?: Prisma.TeacherClassUpdateManyWithoutClassNestedInput;
+    routines?: Prisma.ClassRoutineUpdateManyWithoutClassNestedInput;
+    registrationRequests?: Prisma.RegistrationRequestUpdateManyWithoutClassNestedInput;
+};
+export type ClassUncheckedUpdateWithoutClassTeacherInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    students?: Prisma.StudentUncheckedUpdateManyWithoutClassNestedInput;
+    subjects?: Prisma.SubjectUncheckedUpdateManyWithoutClassNestedInput;
+    assignments?: Prisma.TeacherClassUncheckedUpdateManyWithoutClassNestedInput;
+    routines?: Prisma.ClassRoutineUncheckedUpdateManyWithoutClassNestedInput;
+    registrationRequests?: Prisma.RegistrationRequestUncheckedUpdateManyWithoutClassNestedInput;
+};
+export type ClassUncheckedUpdateManyWithoutClassTeacherInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+/**
+ * Count Type ClassCountOutputType
+ */
+export type ClassCountOutputType = {
+    students: number;
+    subjects: number;
+    assignments: number;
+    routines: number;
+    registrationRequests: number;
+};
+export type ClassCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    students?: boolean | ClassCountOutputTypeCountStudentsArgs;
+    subjects?: boolean | ClassCountOutputTypeCountSubjectsArgs;
+    assignments?: boolean | ClassCountOutputTypeCountAssignmentsArgs;
+    routines?: boolean | ClassCountOutputTypeCountRoutinesArgs;
+    registrationRequests?: boolean | ClassCountOutputTypeCountRegistrationRequestsArgs;
+};
+/**
+ * ClassCountOutputType without action
+ */
+export type ClassCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClassCountOutputType
+     */
+    select?: Prisma.ClassCountOutputTypeSelect<ExtArgs> | null;
+};
+/**
+ * ClassCountOutputType without action
+ */
+export type ClassCountOutputTypeCountStudentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.StudentWhereInput;
+};
+/**
+ * ClassCountOutputType without action
+ */
+export type ClassCountOutputTypeCountSubjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.SubjectWhereInput;
+};
+/**
+ * ClassCountOutputType without action
+ */
+export type ClassCountOutputTypeCountAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.TeacherClassWhereInput;
+};
+/**
+ * ClassCountOutputType without action
+ */
+export type ClassCountOutputTypeCountRoutinesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.ClassRoutineWhereInput;
+};
+/**
+ * ClassCountOutputType without action
+ */
+export type ClassCountOutputTypeCountRegistrationRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.RegistrationRequestWhereInput;
+};
+export type ClassSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    name?: boolean;
+    description?: boolean;
+    classTeacherId?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+    students?: boolean | Prisma.Class$studentsArgs<ExtArgs>;
+    subjects?: boolean | Prisma.Class$subjectsArgs<ExtArgs>;
+    assignments?: boolean | Prisma.Class$assignmentsArgs<ExtArgs>;
+    routines?: boolean | Prisma.Class$routinesArgs<ExtArgs>;
+    classTeacher?: boolean | Prisma.Class$classTeacherArgs<ExtArgs>;
+    registrationRequests?: boolean | Prisma.Class$registrationRequestsArgs<ExtArgs>;
+    _count?: boolean | Prisma.ClassCountOutputTypeDefaultArgs<ExtArgs>;
+}, ExtArgs["result"]["class"]>;
+export type ClassSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    name?: boolean;
+    description?: boolean;
+    classTeacherId?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+    classTeacher?: boolean | Prisma.Class$classTeacherArgs<ExtArgs>;
+}, ExtArgs["result"]["class"]>;
+export type ClassSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    name?: boolean;
+    description?: boolean;
+    classTeacherId?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+    classTeacher?: boolean | Prisma.Class$classTeacherArgs<ExtArgs>;
+}, ExtArgs["result"]["class"]>;
+export type ClassSelectScalar = {
+    id?: boolean;
+    name?: boolean;
+    description?: boolean;
+    classTeacherId?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+};
+export type ClassOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "classTeacherId" | "createdAt" | "updatedAt", ExtArgs["result"]["class"]>;
+export type ClassInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    students?: boolean | Prisma.Class$studentsArgs<ExtArgs>;
+    subjects?: boolean | Prisma.Class$subjectsArgs<ExtArgs>;
+    assignments?: boolean | Prisma.Class$assignmentsArgs<ExtArgs>;
+    routines?: boolean | Prisma.Class$routinesArgs<ExtArgs>;
+    classTeacher?: boolean | Prisma.Class$classTeacherArgs<ExtArgs>;
+    registrationRequests?: boolean | Prisma.Class$registrationRequestsArgs<ExtArgs>;
+    _count?: boolean | Prisma.ClassCountOutputTypeDefaultArgs<ExtArgs>;
+};
+export type ClassIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    classTeacher?: boolean | Prisma.Class$classTeacherArgs<ExtArgs>;
+};
+export type ClassIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    classTeacher?: boolean | Prisma.Class$classTeacherArgs<ExtArgs>;
+};
+export type $ClassPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    name: "Class";
+    objects: {
+        students: Prisma.$StudentPayload<ExtArgs>[];
+        subjects: Prisma.$SubjectPayload<ExtArgs>[];
+        assignments: Prisma.$TeacherClassPayload<ExtArgs>[];
+        routines: Prisma.$ClassRoutinePayload<ExtArgs>[];
+        classTeacher: Prisma.$TeacherPayload<ExtArgs> | null;
+        registrationRequests: Prisma.$RegistrationRequestPayload<ExtArgs>[];
+    };
+    scalars: runtime.Types.Extensions.GetPayloadResult<{
+        id: string;
+        name: string;
+        description: string | null;
+        classTeacherId: string | null;
+        createdAt: Date;
+        updatedAt: Date;
+    }, ExtArgs["result"]["class"]>;
+    composites: {};
+};
+export type ClassGetPayload<S extends boolean | null | undefined | ClassDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$ClassPayload, S>;
+export type ClassCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = Omit<ClassFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: ClassCountAggregateInputType | true;
+};
+export interface ClassDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: {
+        types: Prisma.TypeMap<ExtArgs>['model']['Class'];
+        meta: {
+            name: 'Class';
+        };
+    };
+    /**
+     * Find zero or one Class that matches the filter.
+     * @param {ClassFindUniqueArgs} args - Arguments to find a Class
+     * @example
+     * // Get one Class
+     * const class = await prisma.class.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ClassFindUniqueArgs>(args: Prisma.SelectSubset<T, ClassFindUniqueArgs<ExtArgs>>): Prisma.Prisma__ClassClient<runtime.Types.Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find one Class that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ClassFindUniqueOrThrowArgs} args - Arguments to find a Class
+     * @example
+     * // Get one Class
+     * const class = await prisma.class.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ClassFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, ClassFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__ClassClient<runtime.Types.Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first Class that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClassFindFirstArgs} args - Arguments to find a Class
+     * @example
+     * // Get one Class
+     * const class = await prisma.class.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ClassFindFirstArgs>(args?: Prisma.SelectSubset<T, ClassFindFirstArgs<ExtArgs>>): Prisma.Prisma__ClassClient<runtime.Types.Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first Class that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClassFindFirstOrThrowArgs} args - Arguments to find a Class
+     * @example
+     * // Get one Class
+     * const class = await prisma.class.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ClassFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, ClassFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__ClassClient<runtime.Types.Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find zero or more Classes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClassFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Classes
+     * const classes = await prisma.class.findMany()
+     *
+     * // Get first 10 Classes
+     * const classes = await prisma.class.findMany({ take: 10 })
+     *
+     * // Only select the `id`
+     * const classWithIdOnly = await prisma.class.findMany({ select: { id: true } })
+     *
+     */
+    findMany<T extends ClassFindManyArgs>(args?: Prisma.SelectSubset<T, ClassFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>;
+    /**
+     * Create a Class.
+     * @param {ClassCreateArgs} args - Arguments to create a Class.
+     * @example
+     * // Create one Class
+     * const Class = await prisma.class.create({
+     *   data: {
+     *     // ... data to create a Class
+     *   }
+     * })
+     *
+     */
+    create<T extends ClassCreateArgs>(args: Prisma.SelectSubset<T, ClassCreateArgs<ExtArgs>>): Prisma.Prisma__ClassClient<runtime.Types.Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Create many Classes.
+     * @param {ClassCreateManyArgs} args - Arguments to create many Classes.
+     * @example
+     * // Create many Classes
+     * const class = await prisma.class.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     */
+    createMany<T extends ClassCreateManyArgs>(args?: Prisma.SelectSubset<T, ClassCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Create many Classes and returns the data saved in the database.
+     * @param {ClassCreateManyAndReturnArgs} args - Arguments to create many Classes.
+     * @example
+     * // Create many Classes
+     * const class = await prisma.class.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Create many Classes and only return the `id`
+     * const classWithIdOnly = await prisma.class.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    createManyAndReturn<T extends ClassCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, ClassCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>;
+    /**
+     * Delete a Class.
+     * @param {ClassDeleteArgs} args - Arguments to delete one Class.
+     * @example
+     * // Delete one Class
+     * const Class = await prisma.class.delete({
+     *   where: {
+     *     // ... filter to delete one Class
+     *   }
+     * })
+     *
+     */
+    delete<T extends ClassDeleteArgs>(args: Prisma.SelectSubset<T, ClassDeleteArgs<ExtArgs>>): Prisma.Prisma__ClassClient<runtime.Types.Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Update one Class.
+     * @param {ClassUpdateArgs} args - Arguments to update one Class.
+     * @example
+     * // Update one Class
+     * const class = await prisma.class.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    update<T extends ClassUpdateArgs>(args: Prisma.SelectSubset<T, ClassUpdateArgs<ExtArgs>>): Prisma.Prisma__ClassClient<runtime.Types.Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Delete zero or more Classes.
+     * @param {ClassDeleteManyArgs} args - Arguments to filter Classes to delete.
+     * @example
+     * // Delete a few Classes
+     * const { count } = await prisma.class.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     *
+     */
+    deleteMany<T extends ClassDeleteManyArgs>(args?: Prisma.SelectSubset<T, ClassDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Update zero or more Classes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClassUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Classes
+     * const class = await prisma.class.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    updateMany<T extends ClassUpdateManyArgs>(args: Prisma.SelectSubset<T, ClassUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Update zero or more Classes and returns the data updated in the database.
+     * @param {ClassUpdateManyAndReturnArgs} args - Arguments to update many Classes.
+     * @example
+     * // Update many Classes
+     * const class = await prisma.class.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Update zero or more Classes and only return the `id`
+     * const classWithIdOnly = await prisma.class.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    updateManyAndReturn<T extends ClassUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, ClassUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>;
+    /**
+     * Create or update one Class.
+     * @param {ClassUpsertArgs} args - Arguments to update or create a Class.
+     * @example
+     * // Update or create a Class
+     * const class = await prisma.class.upsert({
+     *   create: {
+     *     // ... data to create a Class
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Class we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ClassUpsertArgs>(args: Prisma.SelectSubset<T, ClassUpsertArgs<ExtArgs>>): Prisma.Prisma__ClassClient<runtime.Types.Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Count the number of Classes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClassCountArgs} args - Arguments to filter Classes to count.
+     * @example
+     * // Count the number of Classes
+     * const count = await prisma.class.count({
+     *   where: {
+     *     // ... the filter for the Classes we want to count
+     *   }
+     * })
+    **/
+    count<T extends ClassCountArgs>(args?: Prisma.Subset<T, ClassCountArgs>): Prisma.PrismaPromise<T extends runtime.Types.Utils.Record<'select', any> ? T['select'] extends true ? number : Prisma.GetScalarType<T['select'], ClassCountAggregateOutputType> : number>;
+    /**
+     * Allows you to perform aggregations operations on a Class.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClassAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ClassAggregateArgs>(args: Prisma.Subset<T, ClassAggregateArgs>): Prisma.PrismaPromise<GetClassAggregateType<T>>;
+    /**
+     * Group by Class.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClassGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     *
+    **/
+    groupBy<T extends ClassGroupByArgs, HasSelectOrTake extends Prisma.Or<Prisma.Extends<'skip', Prisma.Keys<T>>, Prisma.Extends<'take', Prisma.Keys<T>>>, OrderByArg extends Prisma.True extends HasSelectOrTake ? {
+        orderBy: ClassGroupByArgs['orderBy'];
+    } : {
+        orderBy?: ClassGroupByArgs['orderBy'];
+    }, OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>, ByFields extends Prisma.MaybeTupleToUnion<T['by']>, ByValid extends Prisma.Has<ByFields, OrderFields>, HavingFields extends Prisma.GetHavingFields<T['having']>, HavingValid extends Prisma.Has<ByFields, HavingFields>, ByEmpty extends T['by'] extends never[] ? Prisma.True : Prisma.False, InputErrors extends ByEmpty extends Prisma.True ? `Error: "by" must not be empty.` : HavingValid extends Prisma.False ? {
+        [P in HavingFields]: P extends ByFields ? never : P extends string ? `Error: Field "${P}" used in "having" needs to be provided in "by".` : [
+            Error,
+            'Field ',
+            P,
+            ` in "having" needs to be provided in "by"`
+        ];
+    }[HavingFields] : 'take' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "take", you also need to provide "orderBy"' : 'skip' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "skip", you also need to provide "orderBy"' : ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields]>(args: Prisma.SubsetIntersection<T, ClassGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetClassGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the Class model
+     */
+    readonly fields: ClassFieldRefs;
+}
+/**
+ * The delegate class that acts as a "Promise-like" for Class.
+ * Why is this prefixed with `Prisma__`?
+ * Because we want to prevent naming conflicts as mentioned in
+ * https://github.com/prisma/prisma-client-js/issues/707
+ */
+export interface Prisma__ClassClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise";
+    students<T extends Prisma.Class$studentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Class$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    subjects<T extends Prisma.Class$subjectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Class$subjectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    assignments<T extends Prisma.Class$assignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Class$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeacherClassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    routines<T extends Prisma.Class$routinesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Class$routinesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassRoutinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    classTeacher<T extends Prisma.Class$classTeacherArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Class$classTeacherArgs<ExtArgs>>): Prisma.Prisma__TeacherClient<runtime.Types.Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    registrationRequests<T extends Prisma.Class$registrationRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Class$registrationRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RegistrationRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>;
+}
+/**
+ * Fields of the Class model
+ */
+export interface ClassFieldRefs {
+    readonly id: Prisma.FieldRef<"Class", 'String'>;
+    readonly name: Prisma.FieldRef<"Class", 'String'>;
+    readonly description: Prisma.FieldRef<"Class", 'String'>;
+    readonly classTeacherId: Prisma.FieldRef<"Class", 'String'>;
+    readonly createdAt: Prisma.FieldRef<"Class", 'DateTime'>;
+    readonly updatedAt: Prisma.FieldRef<"Class", 'DateTime'>;
+}
+/**
+ * Class findUnique
+ */
+export type ClassFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Class
+     */
+    select?: Prisma.ClassSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Class
+     */
+    omit?: Prisma.ClassOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassInclude<ExtArgs> | null;
+    /**
+     * Filter, which Class to fetch.
+     */
+    where: Prisma.ClassWhereUniqueInput;
+};
+/**
+ * Class findUniqueOrThrow
+ */
+export type ClassFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Class
+     */
+    select?: Prisma.ClassSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Class
+     */
+    omit?: Prisma.ClassOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassInclude<ExtArgs> | null;
+    /**
+     * Filter, which Class to fetch.
+     */
+    where: Prisma.ClassWhereUniqueInput;
+};
+/**
+ * Class findFirst
+ */
+export type ClassFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Class
+     */
+    select?: Prisma.ClassSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Class
+     */
+    omit?: Prisma.ClassOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassInclude<ExtArgs> | null;
+    /**
+     * Filter, which Class to fetch.
+     */
+    where?: Prisma.ClassWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of Classes to fetch.
+     */
+    orderBy?: Prisma.ClassOrderByWithRelationInput | Prisma.ClassOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for Classes.
+     */
+    cursor?: Prisma.ClassWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` Classes from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` Classes.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of Classes.
+     */
+    distinct?: Prisma.ClassScalarFieldEnum | Prisma.ClassScalarFieldEnum[];
+};
+/**
+ * Class findFirstOrThrow
+ */
+export type ClassFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Class
+     */
+    select?: Prisma.ClassSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Class
+     */
+    omit?: Prisma.ClassOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassInclude<ExtArgs> | null;
+    /**
+     * Filter, which Class to fetch.
+     */
+    where?: Prisma.ClassWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of Classes to fetch.
+     */
+    orderBy?: Prisma.ClassOrderByWithRelationInput | Prisma.ClassOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for Classes.
+     */
+    cursor?: Prisma.ClassWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` Classes from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` Classes.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of Classes.
+     */
+    distinct?: Prisma.ClassScalarFieldEnum | Prisma.ClassScalarFieldEnum[];
+};
+/**
+ * Class findMany
+ */
+export type ClassFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Class
+     */
+    select?: Prisma.ClassSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Class
+     */
+    omit?: Prisma.ClassOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassInclude<ExtArgs> | null;
+    /**
+     * Filter, which Classes to fetch.
+     */
+    where?: Prisma.ClassWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of Classes to fetch.
+     */
+    orderBy?: Prisma.ClassOrderByWithRelationInput | Prisma.ClassOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for listing Classes.
+     */
+    cursor?: Prisma.ClassWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` Classes from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` Classes.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of Classes.
+     */
+    distinct?: Prisma.ClassScalarFieldEnum | Prisma.ClassScalarFieldEnum[];
+};
+/**
+ * Class create
+ */
+export type ClassCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Class
+     */
+    select?: Prisma.ClassSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Class
+     */
+    omit?: Prisma.ClassOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassInclude<ExtArgs> | null;
+    /**
+     * The data needed to create a Class.
+     */
+    data: Prisma.XOR<Prisma.ClassCreateInput, Prisma.ClassUncheckedCreateInput>;
+};
+/**
+ * Class createMany
+ */
+export type ClassCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Classes.
+     */
+    data: Prisma.ClassCreateManyInput | Prisma.ClassCreateManyInput[];
+    skipDuplicates?: boolean;
+};
+/**
+ * Class createManyAndReturn
+ */
+export type ClassCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Class
+     */
+    select?: Prisma.ClassSelectCreateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Class
+     */
+    omit?: Prisma.ClassOmit<ExtArgs> | null;
+    /**
+     * The data used to create many Classes.
+     */
+    data: Prisma.ClassCreateManyInput | Prisma.ClassCreateManyInput[];
+    skipDuplicates?: boolean;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassIncludeCreateManyAndReturn<ExtArgs> | null;
+};
+/**
+ * Class update
+ */
+export type ClassUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Class
+     */
+    select?: Prisma.ClassSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Class
+     */
+    omit?: Prisma.ClassOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassInclude<ExtArgs> | null;
+    /**
+     * The data needed to update a Class.
+     */
+    data: Prisma.XOR<Prisma.ClassUpdateInput, Prisma.ClassUncheckedUpdateInput>;
+    /**
+     * Choose, which Class to update.
+     */
+    where: Prisma.ClassWhereUniqueInput;
+};
+/**
+ * Class updateMany
+ */
+export type ClassUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Classes.
+     */
+    data: Prisma.XOR<Prisma.ClassUpdateManyMutationInput, Prisma.ClassUncheckedUpdateManyInput>;
+    /**
+     * Filter which Classes to update
+     */
+    where?: Prisma.ClassWhereInput;
+    /**
+     * Limit how many Classes to update.
+     */
+    limit?: number;
+};
+/**
+ * Class updateManyAndReturn
+ */
+export type ClassUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Class
+     */
+    select?: Prisma.ClassSelectUpdateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Class
+     */
+    omit?: Prisma.ClassOmit<ExtArgs> | null;
+    /**
+     * The data used to update Classes.
+     */
+    data: Prisma.XOR<Prisma.ClassUpdateManyMutationInput, Prisma.ClassUncheckedUpdateManyInput>;
+    /**
+     * Filter which Classes to update
+     */
+    where?: Prisma.ClassWhereInput;
+    /**
+     * Limit how many Classes to update.
+     */
+    limit?: number;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassIncludeUpdateManyAndReturn<ExtArgs> | null;
+};
+/**
+ * Class upsert
+ */
+export type ClassUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Class
+     */
+    select?: Prisma.ClassSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Class
+     */
+    omit?: Prisma.ClassOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassInclude<ExtArgs> | null;
+    /**
+     * The filter to search for the Class to update in case it exists.
+     */
+    where: Prisma.ClassWhereUniqueInput;
+    /**
+     * In case the Class found by the `where` argument doesn't exist, create a new Class with this data.
+     */
+    create: Prisma.XOR<Prisma.ClassCreateInput, Prisma.ClassUncheckedCreateInput>;
+    /**
+     * In case the Class was found with the provided `where` argument, update it with this data.
+     */
+    update: Prisma.XOR<Prisma.ClassUpdateInput, Prisma.ClassUncheckedUpdateInput>;
+};
+/**
+ * Class delete
+ */
+export type ClassDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Class
+     */
+    select?: Prisma.ClassSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Class
+     */
+    omit?: Prisma.ClassOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassInclude<ExtArgs> | null;
+    /**
+     * Filter which Class to delete.
+     */
+    where: Prisma.ClassWhereUniqueInput;
+};
+/**
+ * Class deleteMany
+ */
+export type ClassDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which Classes to delete
+     */
+    where?: Prisma.ClassWhereInput;
+    /**
+     * Limit how many Classes to delete.
+     */
+    limit?: number;
+};
+/**
+ * Class.students
+ */
+export type Class$studentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Student
+     */
+    select?: Prisma.StudentSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Student
+     */
+    omit?: Prisma.StudentOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.StudentInclude<ExtArgs> | null;
+    where?: Prisma.StudentWhereInput;
+    orderBy?: Prisma.StudentOrderByWithRelationInput | Prisma.StudentOrderByWithRelationInput[];
+    cursor?: Prisma.StudentWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.StudentScalarFieldEnum | Prisma.StudentScalarFieldEnum[];
+};
+/**
+ * Class.subjects
+ */
+export type Class$subjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subject
+     */
+    select?: Prisma.SubjectSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Subject
+     */
+    omit?: Prisma.SubjectOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.SubjectInclude<ExtArgs> | null;
+    where?: Prisma.SubjectWhereInput;
+    orderBy?: Prisma.SubjectOrderByWithRelationInput | Prisma.SubjectOrderByWithRelationInput[];
+    cursor?: Prisma.SubjectWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.SubjectScalarFieldEnum | Prisma.SubjectScalarFieldEnum[];
+};
+/**
+ * Class.assignments
+ */
+export type Class$assignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TeacherClass
+     */
+    select?: Prisma.TeacherClassSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the TeacherClass
+     */
+    omit?: Prisma.TeacherClassOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.TeacherClassInclude<ExtArgs> | null;
+    where?: Prisma.TeacherClassWhereInput;
+    orderBy?: Prisma.TeacherClassOrderByWithRelationInput | Prisma.TeacherClassOrderByWithRelationInput[];
+    cursor?: Prisma.TeacherClassWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.TeacherClassScalarFieldEnum | Prisma.TeacherClassScalarFieldEnum[];
+};
+/**
+ * Class.routines
+ */
+export type Class$routinesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClassRoutine
+     */
+    select?: Prisma.ClassRoutineSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ClassRoutine
+     */
+    omit?: Prisma.ClassRoutineOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassRoutineInclude<ExtArgs> | null;
+    where?: Prisma.ClassRoutineWhereInput;
+    orderBy?: Prisma.ClassRoutineOrderByWithRelationInput | Prisma.ClassRoutineOrderByWithRelationInput[];
+    cursor?: Prisma.ClassRoutineWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.ClassRoutineScalarFieldEnum | Prisma.ClassRoutineScalarFieldEnum[];
+};
+/**
+ * Class.classTeacher
+ */
+export type Class$classTeacherArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Teacher
+     */
+    select?: Prisma.TeacherSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Teacher
+     */
+    omit?: Prisma.TeacherOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.TeacherInclude<ExtArgs> | null;
+    where?: Prisma.TeacherWhereInput;
+};
+/**
+ * Class.registrationRequests
+ */
+export type Class$registrationRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RegistrationRequest
+     */
+    select?: Prisma.RegistrationRequestSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the RegistrationRequest
+     */
+    omit?: Prisma.RegistrationRequestOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.RegistrationRequestInclude<ExtArgs> | null;
+    where?: Prisma.RegistrationRequestWhereInput;
+    orderBy?: Prisma.RegistrationRequestOrderByWithRelationInput | Prisma.RegistrationRequestOrderByWithRelationInput[];
+    cursor?: Prisma.RegistrationRequestWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.RegistrationRequestScalarFieldEnum | Prisma.RegistrationRequestScalarFieldEnum[];
+};
+/**
+ * Class without action
+ */
+export type ClassDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Class
+     */
+    select?: Prisma.ClassSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Class
+     */
+    omit?: Prisma.ClassOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassInclude<ExtArgs> | null;
+};
+//# sourceMappingURL=Class.d.ts.map
