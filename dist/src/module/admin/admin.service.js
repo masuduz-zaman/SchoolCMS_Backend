@@ -1,5 +1,19 @@
 import { RequestStatus, RequestType, UserRole } from "@prisma/client";
 import { prisma } from "../../lib/prisma";
+const getRegisterRequestInDb = async (requestId) => {
+    const requests = await prisma.$transaction(async (tx) => {
+        const allRequests = await prisma.registrationRequest.findMany({
+            where: {
+                id: requestId,
+            },
+            orderBy: {
+                createdAt: "desc"
+            }
+        });
+        return allRequests;
+    });
+    return requests;
+};
 const approveRequest = async (requestId, adminId, status) => {
     return prisma.$transaction(async (tx) => {
         const admin = await tx.user.findUnique({
@@ -82,8 +96,8 @@ const approveRequest = async (requestId, adminId, status) => {
 const createClassInDb = async (payload) => {
     const existingClass = await prisma.class.findUniqueOrThrow({
         where: {
-            name: payload.name
-        }
+            name: payload.name,
+        },
     });
     if (existingClass) {
         throw new Error("Already have a same class");
@@ -96,8 +110,41 @@ const createClassInDb = async (payload) => {
     });
     return result;
 };
+const getAllClassInDb = async (classId) => {
+    const result = await prisma.$transaction(async (tx) => {
+        const allClass = await prisma.class.findMany({
+            where: {
+                id: classId,
+            },
+            orderBy: {
+                updatedAt: "desc"
+            }
+        });
+        return allClass;
+    });
+    return result;
+};
+const getStudentByClassInDb = async (classId, studentId) => {
+    const transactionByClassStudent = await prisma.$transaction(async (tx) => {
+        const result = await prisma.class.findMany({
+            where: {
+                id: classId,
+                students: {
+                    some: {
+                        id: studentId,
+                    }
+                }
+            },
+        });
+        return result;
+    });
+    return transactionByClassStudent;
+};
 export const adminService = {
+    getRegisterRequestInDb,
     approveRequest,
     createClassInDb,
+    getAllClassInDb,
+    getStudentByClassInDb
 };
 //# sourceMappingURL=admin.service.js.map

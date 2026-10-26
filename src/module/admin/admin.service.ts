@@ -1,6 +1,20 @@
-import { RequestStatus, RequestType, UserRole } from "@prisma/client";
+import { Prisma, RequestStatus, RequestType, UserRole } from "@prisma/client";
 import { prisma } from "../../lib/prisma";
 
+const getRegisterRequestInDb = async (requestId: string) => {
+  const requests = await prisma.$transaction(async (tx) => {
+    const allRequests = await prisma.registrationRequest.findMany({
+      where: {
+        id: requestId,
+      },
+      orderBy:{
+        createdAt:"desc"
+      }
+    });
+    return allRequests
+  });
+  return requests
+};
 const approveRequest = async (
   requestId: string,
   adminId: string,
@@ -102,25 +116,59 @@ const createClassInDb = async (payload: {
   name: string;
   description?: string;
 }) => {
-  
   const existingClass = await prisma.class.findUniqueOrThrow({
-    where:{
-      name:payload.name
-    }
-  })
-  if(existingClass){
-    throw new Error("Already have a same class")
+    where: {
+      name: payload.name,
+    },
+  });
+  if (existingClass) {
+    throw new Error("Already have a same class");
   }
-  const result= prisma.class.create({
+  const result = prisma.class.create({
     data: {
       name: payload.name,
       description: payload.description,
     },
   });
-  return result
+  return result;
 };
 
-export const adminService = {
-    approveRequest,
-    createClassInDb,
+const getAllClassInDb = async (classId:string)=>{
+  const result = await prisma.$transaction(async(tx)=>{
+    const allClass = await prisma.class.findMany({
+      where:{
+        id:classId,
+      },
+      orderBy:{
+        updatedAt:"desc"
+      }
+    })
+    return allClass
+  })
+  return result
 }
+
+const getStudentByClassInDb = async(classId:string, studentId:string)=>{
+  const transactionByClassStudent = await prisma.$transaction(async(tx)=>{
+    const result = await prisma.class.findMany({
+      where:{
+        id:classId,
+        students:{
+          some:{
+            id:studentId,
+          }
+        }
+      },
+    })
+    return result
+  })
+  return transactionByClassStudent
+}
+
+export const adminService = {
+  getRegisterRequestInDb,
+  approveRequest,
+  createClassInDb,
+  getAllClassInDb,
+  getStudentByClassInDb
+};
