@@ -51,7 +51,7 @@ const createClass = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllClass = catchAsync(async (req: Request, res: Response) => {
-  const result = await adminService.getAllClassInDb(req.body);
+  const result = await adminService.getAllClassInDb();
   sendResponse(res, {
     success: true,
     statusCode: 200,
@@ -60,9 +60,20 @@ const getAllClass = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const deleteUser = catchAsync(async(req:Request,res:Response)=>{
+  const result = await adminService.deleteUserInDb(req.params.id as string )
+  sendResponse(res,{
+    success:true,
+    statusCode: 200,
+    message: `${result.name} deleted successfully`,
+    data: result,
+  })
+})
+
 export const adminController = {
   getRegisterRequest,
   approveRequest,
   createClass,
   getAllClass,
+  deleteUser,
 };

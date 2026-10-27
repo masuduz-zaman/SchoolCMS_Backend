@@ -55,6 +55,7 @@ export const ModelName = {
   Class: 'Class',
   ClassRoutine: 'ClassRoutine',
   TeacherClass: 'TeacherClass',
+  Profile: 'Profile',
   RegistrationRequest: 'RegistrationRequest',
   SchoolContent: 'SchoolContent',
   Student: 'Student',
@@ -84,6 +85,9 @@ export const AdmissionNoticeScalarFieldEnum = {
   title: 'title',
   content: 'content',
   isPublished: 'isPublished',
+  isExpired: 'isExpired',
+  publishedAt: 'publishedAt',
+  expiresAt: 'expiresAt',
   createdById: 'createdById',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -130,12 +134,25 @@ export const TeacherClassScalarFieldEnum = {
 export type TeacherClassScalarFieldEnum = (typeof TeacherClassScalarFieldEnum)[keyof typeof TeacherClassScalarFieldEnum]
 
 
+export const ProfileScalarFieldEnum = {
+  id: 'id',
+  profilePhoto: 'profilePhoto',
+  bio: 'bio',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+} as const
+
+export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]
+
+
 export const RegistrationRequestScalarFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
   phone: 'phone',
-  passwordHash: 'passwordHash',
+  password: 'password',
+  classRoll: 'classRoll',
   requestType: 'requestType',
   status: 'status',
   classId: 'classId',
@@ -164,6 +181,7 @@ export const StudentScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   classId: 'classId',
+  classRoll: 'classRoll',
   parentPhone: 'parentPhone',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -198,7 +216,7 @@ export const UserScalarFieldEnum = {
   name: 'name',
   email: 'email',
   phone: 'phone',
-  passwordHash: 'passwordHash',
+  password: 'password',
   role: 'role',
   status: 'status',
   createdAt: 'createdAt',

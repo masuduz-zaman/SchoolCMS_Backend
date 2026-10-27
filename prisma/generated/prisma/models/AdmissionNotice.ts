@@ -29,6 +29,9 @@ export type AdmissionNoticeMinAggregateOutputType = {
   title: string | null
   content: string | null
   isPublished: boolean | null
+  isExpired: boolean | null
+  publishedAt: Date | null
+  expiresAt: Date | null
   createdById: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -39,6 +42,9 @@ export type AdmissionNoticeMaxAggregateOutputType = {
   title: string | null
   content: string | null
   isPublished: boolean | null
+  isExpired: boolean | null
+  publishedAt: Date | null
+  expiresAt: Date | null
   createdById: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -49,6 +55,9 @@ export type AdmissionNoticeCountAggregateOutputType = {
   title: number
   content: number
   isPublished: number
+  isExpired: number
+  publishedAt: number
+  expiresAt: number
   createdById: number
   createdAt: number
   updatedAt: number
@@ -61,6 +70,9 @@ export type AdmissionNoticeMinAggregateInputType = {
   title?: true
   content?: true
   isPublished?: true
+  isExpired?: true
+  publishedAt?: true
+  expiresAt?: true
   createdById?: true
   createdAt?: true
   updatedAt?: true
@@ -71,6 +83,9 @@ export type AdmissionNoticeMaxAggregateInputType = {
   title?: true
   content?: true
   isPublished?: true
+  isExpired?: true
+  publishedAt?: true
+  expiresAt?: true
   createdById?: true
   createdAt?: true
   updatedAt?: true
@@ -81,6 +96,9 @@ export type AdmissionNoticeCountAggregateInputType = {
   title?: true
   content?: true
   isPublished?: true
+  isExpired?: true
+  publishedAt?: true
+  expiresAt?: true
   createdById?: true
   createdAt?: true
   updatedAt?: true
@@ -164,6 +182,9 @@ export type AdmissionNoticeGroupByOutputType = {
   title: string
   content: string
   isPublished: boolean
+  isExpired: boolean
+  publishedAt: Date | null
+  expiresAt: Date | null
   createdById: string
   createdAt: Date
   updatedAt: Date
@@ -195,6 +216,9 @@ export type AdmissionNoticeWhereInput = {
   title?: Prisma.StringFilter<"AdmissionNotice"> | string
   content?: Prisma.StringFilter<"AdmissionNotice"> | string
   isPublished?: Prisma.BoolFilter<"AdmissionNotice"> | boolean
+  isExpired?: Prisma.BoolFilter<"AdmissionNotice"> | boolean
+  publishedAt?: Prisma.DateTimeNullableFilter<"AdmissionNotice"> | Date | string | null
+  expiresAt?: Prisma.DateTimeNullableFilter<"AdmissionNotice"> | Date | string | null
   createdById?: Prisma.StringFilter<"AdmissionNotice"> | string
   createdAt?: Prisma.DateTimeFilter<"AdmissionNotice"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AdmissionNotice"> | Date | string
@@ -206,6 +230,9 @@ export type AdmissionNoticeOrderByWithRelationInput = {
   title?: Prisma.SortOrder
   content?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  isExpired?: Prisma.SortOrder
+  publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -220,6 +247,9 @@ export type AdmissionNoticeWhereUniqueInput = Prisma.AtLeast<{
   title?: Prisma.StringFilter<"AdmissionNotice"> | string
   content?: Prisma.StringFilter<"AdmissionNotice"> | string
   isPublished?: Prisma.BoolFilter<"AdmissionNotice"> | boolean
+  isExpired?: Prisma.BoolFilter<"AdmissionNotice"> | boolean
+  publishedAt?: Prisma.DateTimeNullableFilter<"AdmissionNotice"> | Date | string | null
+  expiresAt?: Prisma.DateTimeNullableFilter<"AdmissionNotice"> | Date | string | null
   createdById?: Prisma.StringFilter<"AdmissionNotice"> | string
   createdAt?: Prisma.DateTimeFilter<"AdmissionNotice"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AdmissionNotice"> | Date | string
@@ -231,6 +261,9 @@ export type AdmissionNoticeOrderByWithAggregationInput = {
   title?: Prisma.SortOrder
   content?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  isExpired?: Prisma.SortOrder
+  publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -247,6 +280,9 @@ export type AdmissionNoticeScalarWhereWithAggregatesInput = {
   title?: Prisma.StringWithAggregatesFilter<"AdmissionNotice"> | string
   content?: Prisma.StringWithAggregatesFilter<"AdmissionNotice"> | string
   isPublished?: Prisma.BoolWithAggregatesFilter<"AdmissionNotice"> | boolean
+  isExpired?: Prisma.BoolWithAggregatesFilter<"AdmissionNotice"> | boolean
+  publishedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"AdmissionNotice"> | Date | string | null
+  expiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"AdmissionNotice"> | Date | string | null
   createdById?: Prisma.StringWithAggregatesFilter<"AdmissionNotice"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"AdmissionNotice"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"AdmissionNotice"> | Date | string
@@ -257,6 +293,9 @@ export type AdmissionNoticeCreateInput = {
   title: string
   content: string
   isPublished?: boolean
+  isExpired?: boolean
+  publishedAt?: Date | string | null
+  expiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   createdBy: Prisma.UserCreateNestedOneWithoutNoticesInput
@@ -267,6 +306,9 @@ export type AdmissionNoticeUncheckedCreateInput = {
   title: string
   content: string
   isPublished?: boolean
+  isExpired?: boolean
+  publishedAt?: Date | string | null
+  expiresAt?: Date | string | null
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -277,6 +319,9 @@ export type AdmissionNoticeUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isExpired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.UserUpdateOneRequiredWithoutNoticesNestedInput
@@ -287,6 +332,9 @@ export type AdmissionNoticeUncheckedUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isExpired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -297,6 +345,9 @@ export type AdmissionNoticeCreateManyInput = {
   title: string
   content: string
   isPublished?: boolean
+  isExpired?: boolean
+  publishedAt?: Date | string | null
+  expiresAt?: Date | string | null
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -307,6 +358,9 @@ export type AdmissionNoticeUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isExpired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -316,6 +370,9 @@ export type AdmissionNoticeUncheckedUpdateManyInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isExpired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -326,6 +383,9 @@ export type AdmissionNoticeCountOrderByAggregateInput = {
   title?: Prisma.SortOrder
   content?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  isExpired?: Prisma.SortOrder
+  publishedAt?: Prisma.SortOrder
+  expiresAt?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -336,6 +396,9 @@ export type AdmissionNoticeMaxOrderByAggregateInput = {
   title?: Prisma.SortOrder
   content?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  isExpired?: Prisma.SortOrder
+  publishedAt?: Prisma.SortOrder
+  expiresAt?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -346,6 +409,9 @@ export type AdmissionNoticeMinOrderByAggregateInput = {
   title?: Prisma.SortOrder
   content?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  isExpired?: Prisma.SortOrder
+  publishedAt?: Prisma.SortOrder
+  expiresAt?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -367,6 +433,10 @@ export type StringFieldUpdateOperationsInput = {
 
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -420,6 +490,9 @@ export type AdmissionNoticeCreateWithoutCreatedByInput = {
   title: string
   content: string
   isPublished?: boolean
+  isExpired?: boolean
+  publishedAt?: Date | string | null
+  expiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -429,6 +502,9 @@ export type AdmissionNoticeUncheckedCreateWithoutCreatedByInput = {
   title: string
   content: string
   isPublished?: boolean
+  isExpired?: boolean
+  publishedAt?: Date | string | null
+  expiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -467,6 +543,9 @@ export type AdmissionNoticeScalarWhereInput = {
   title?: Prisma.StringFilter<"AdmissionNotice"> | string
   content?: Prisma.StringFilter<"AdmissionNotice"> | string
   isPublished?: Prisma.BoolFilter<"AdmissionNotice"> | boolean
+  isExpired?: Prisma.BoolFilter<"AdmissionNotice"> | boolean
+  publishedAt?: Prisma.DateTimeNullableFilter<"AdmissionNotice"> | Date | string | null
+  expiresAt?: Prisma.DateTimeNullableFilter<"AdmissionNotice"> | Date | string | null
   createdById?: Prisma.StringFilter<"AdmissionNotice"> | string
   createdAt?: Prisma.DateTimeFilter<"AdmissionNotice"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AdmissionNotice"> | Date | string
@@ -477,6 +556,9 @@ export type AdmissionNoticeCreateManyCreatedByInput = {
   title: string
   content: string
   isPublished?: boolean
+  isExpired?: boolean
+  publishedAt?: Date | string | null
+  expiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -486,6 +568,9 @@ export type AdmissionNoticeUpdateWithoutCreatedByInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isExpired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -495,6 +580,9 @@ export type AdmissionNoticeUncheckedUpdateWithoutCreatedByInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isExpired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -504,6 +592,9 @@ export type AdmissionNoticeUncheckedUpdateManyWithoutCreatedByInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isExpired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -515,6 +606,9 @@ export type AdmissionNoticeSelect<ExtArgs extends runtime.Types.Extensions.Inter
   title?: boolean
   content?: boolean
   isPublished?: boolean
+  isExpired?: boolean
+  publishedAt?: boolean
+  expiresAt?: boolean
   createdById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -526,6 +620,9 @@ export type AdmissionNoticeSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   title?: boolean
   content?: boolean
   isPublished?: boolean
+  isExpired?: boolean
+  publishedAt?: boolean
+  expiresAt?: boolean
   createdById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -537,6 +634,9 @@ export type AdmissionNoticeSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   title?: boolean
   content?: boolean
   isPublished?: boolean
+  isExpired?: boolean
+  publishedAt?: boolean
+  expiresAt?: boolean
   createdById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -548,12 +648,15 @@ export type AdmissionNoticeSelectScalar = {
   title?: boolean
   content?: boolean
   isPublished?: boolean
+  isExpired?: boolean
+  publishedAt?: boolean
+  expiresAt?: boolean
   createdById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type AdmissionNoticeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "content" | "isPublished" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["admissionNotice"]>
+export type AdmissionNoticeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "content" | "isPublished" | "isExpired" | "publishedAt" | "expiresAt" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["admissionNotice"]>
 export type AdmissionNoticeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -574,6 +677,9 @@ export type $AdmissionNoticePayload<ExtArgs extends runtime.Types.Extensions.Int
     title: string
     content: string
     isPublished: boolean
+    isExpired: boolean
+    publishedAt: Date | null
+    expiresAt: Date | null
     createdById: string
     createdAt: Date
     updatedAt: Date
@@ -1005,6 +1111,9 @@ export interface AdmissionNoticeFieldRefs {
   readonly title: Prisma.FieldRef<"AdmissionNotice", 'String'>
   readonly content: Prisma.FieldRef<"AdmissionNotice", 'String'>
   readonly isPublished: Prisma.FieldRef<"AdmissionNotice", 'Boolean'>
+  readonly isExpired: Prisma.FieldRef<"AdmissionNotice", 'Boolean'>
+  readonly publishedAt: Prisma.FieldRef<"AdmissionNotice", 'DateTime'>
+  readonly expiresAt: Prisma.FieldRef<"AdmissionNotice", 'DateTime'>
   readonly createdById: Prisma.FieldRef<"AdmissionNotice", 'String'>
   readonly createdAt: Prisma.FieldRef<"AdmissionNotice", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"AdmissionNotice", 'DateTime'>

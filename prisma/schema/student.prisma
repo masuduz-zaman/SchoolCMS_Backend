@@ -12,5 +12,5 @@ model Student {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
-  //          @@index([classId])
+  @@index([classId])
 }

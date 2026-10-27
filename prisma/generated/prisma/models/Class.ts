@@ -438,10 +438,12 @@ export type ClassCreateNestedOneWithoutStudentsInput = {
   connect?: Prisma.ClassWhereUniqueInput
 }
 
-export type ClassUpdateOneRequiredWithoutStudentsNestedInput = {
+export type ClassUpdateOneWithoutStudentsNestedInput = {
   create?: Prisma.XOR<Prisma.ClassCreateWithoutStudentsInput, Prisma.ClassUncheckedCreateWithoutStudentsInput>
   connectOrCreate?: Prisma.ClassCreateOrConnectWithoutStudentsInput
   upsert?: Prisma.ClassUpsertWithoutStudentsInput
+  disconnect?: Prisma.ClassWhereInput | boolean
+  delete?: Prisma.ClassWhereInput | boolean
   connect?: Prisma.ClassWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ClassUpdateToOneWithWhereWithoutStudentsInput, Prisma.ClassUpdateWithoutStudentsInput>, Prisma.ClassUncheckedUpdateWithoutStudentsInput>
 }
@@ -452,10 +454,12 @@ export type ClassCreateNestedOneWithoutSubjectsInput = {
   connect?: Prisma.ClassWhereUniqueInput
 }
 
-export type ClassUpdateOneRequiredWithoutSubjectsNestedInput = {
+export type ClassUpdateOneWithoutSubjectsNestedInput = {
   create?: Prisma.XOR<Prisma.ClassCreateWithoutSubjectsInput, Prisma.ClassUncheckedCreateWithoutSubjectsInput>
   connectOrCreate?: Prisma.ClassCreateOrConnectWithoutSubjectsInput
   upsert?: Prisma.ClassUpsertWithoutSubjectsInput
+  disconnect?: Prisma.ClassWhereInput | boolean
+  delete?: Prisma.ClassWhereInput | boolean
   connect?: Prisma.ClassWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ClassUpdateToOneWithWhereWithoutSubjectsInput, Prisma.ClassUpdateWithoutSubjectsInput>, Prisma.ClassUncheckedUpdateWithoutSubjectsInput>
 }

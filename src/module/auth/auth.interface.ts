@@ -1,18 +1,16 @@
 import { RequestType } from "@prisma/client";
 
 export interface RegisterUserPayload {
-    id: string;
-    name: string;
-    email: string;
-    requestType: RequestType;
-    classId: string;
-    password: string;
-    profileImage?: string;
+  id: string;
+  name: string;
+  email: string;
+  requestType: RequestType;
+  className?: string;
+  password: string;
+  profileImage?: string;
 }
 
-
-
 export interface ILoginUser {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 }

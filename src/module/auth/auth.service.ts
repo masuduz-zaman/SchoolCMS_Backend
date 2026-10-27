@@ -51,7 +51,7 @@ import { SignOptions } from "jsonwebtoken";
 // };
 
 const registrationRequestInDb = async (payload: RegisterUserPayload) => {
-  const { name, email, password,classId } = payload;
+  const { name, email, password, className } = payload;
 
   const isUserExist = await prisma.user.findUnique({
     where: {
@@ -63,8 +63,6 @@ const registrationRequestInDb = async (payload: RegisterUserPayload) => {
     throw new Error("User already exist with this email");
   }
 
-  
-
   const pendingRequest = await prisma.registrationRequest.findFirst({
     where: {
       email,
@@ -73,6 +71,20 @@ const registrationRequestInDb = async (payload: RegisterUserPayload) => {
   });
   if (pendingRequest) {
     throw new Error("Your registration request is pending");
+  }
+
+  let classId: string | null = null;
+  if (className?.trim()) {
+    const existingClass = await prisma.class.findUnique({
+      where: {
+        name: className.trim(),
+      },
+      select: { id: true },
+    });
+    if(!existingClass){
+      throw new Error("Class not found")
+    }
+    classId = existingClass.id
   }
 
   const hashedPassword = await bcrypt.hash(
@@ -84,7 +96,7 @@ const registrationRequestInDb = async (payload: RegisterUserPayload) => {
     data: {
       name,
       email,
-      password:hashedPassword,
+      password: hashedPassword,
       classId,
       requestType: RequestType.STUDENT || RequestType.TEACHER,
     },

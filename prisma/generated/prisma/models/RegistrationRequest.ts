@@ -29,7 +29,8 @@ export type RegistrationRequestMinAggregateOutputType = {
   name: string | null
   email: string | null
   phone: string | null
-  passwordHash: string | null
+  password: string | null
+  classRoll: string | null
   requestType: $Enums.RequestType | null
   status: $Enums.RequestStatus | null
   classId: string | null
@@ -45,7 +46,8 @@ export type RegistrationRequestMaxAggregateOutputType = {
   name: string | null
   email: string | null
   phone: string | null
-  passwordHash: string | null
+  password: string | null
+  classRoll: string | null
   requestType: $Enums.RequestType | null
   status: $Enums.RequestStatus | null
   classId: string | null
@@ -61,7 +63,8 @@ export type RegistrationRequestCountAggregateOutputType = {
   name: number
   email: number
   phone: number
-  passwordHash: number
+  password: number
+  classRoll: number
   requestType: number
   status: number
   classId: number
@@ -79,7 +82,8 @@ export type RegistrationRequestMinAggregateInputType = {
   name?: true
   email?: true
   phone?: true
-  passwordHash?: true
+  password?: true
+  classRoll?: true
   requestType?: true
   status?: true
   classId?: true
@@ -95,7 +99,8 @@ export type RegistrationRequestMaxAggregateInputType = {
   name?: true
   email?: true
   phone?: true
-  passwordHash?: true
+  password?: true
+  classRoll?: true
   requestType?: true
   status?: true
   classId?: true
@@ -111,7 +116,8 @@ export type RegistrationRequestCountAggregateInputType = {
   name?: true
   email?: true
   phone?: true
-  passwordHash?: true
+  password?: true
+  classRoll?: true
   requestType?: true
   status?: true
   classId?: true
@@ -200,7 +206,8 @@ export type RegistrationRequestGroupByOutputType = {
   name: string
   email: string
   phone: string | null
-  passwordHash: string
+  password: string
+  classRoll: string | null
   requestType: $Enums.RequestType
   status: $Enums.RequestStatus
   classId: string | null
@@ -237,7 +244,8 @@ export type RegistrationRequestWhereInput = {
   name?: Prisma.StringFilter<"RegistrationRequest"> | string
   email?: Prisma.StringFilter<"RegistrationRequest"> | string
   phone?: Prisma.StringNullableFilter<"RegistrationRequest"> | string | null
-  passwordHash?: Prisma.StringFilter<"RegistrationRequest"> | string
+  password?: Prisma.StringFilter<"RegistrationRequest"> | string
+  classRoll?: Prisma.StringNullableFilter<"RegistrationRequest"> | string | null
   requestType?: Prisma.EnumRequestTypeFilter<"RegistrationRequest"> | $Enums.RequestType
   status?: Prisma.EnumRequestStatusFilter<"RegistrationRequest"> | $Enums.RequestStatus
   classId?: Prisma.StringNullableFilter<"RegistrationRequest"> | string | null
@@ -254,7 +262,8 @@ export type RegistrationRequestOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
-  passwordHash?: Prisma.SortOrder
+  password?: Prisma.SortOrder
+  classRoll?: Prisma.SortOrderInput | Prisma.SortOrder
   requestType?: Prisma.SortOrder
   status?: Prisma.SortOrder
   classId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -274,7 +283,8 @@ export type RegistrationRequestWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"RegistrationRequest"> | string
   email?: Prisma.StringFilter<"RegistrationRequest"> | string
   phone?: Prisma.StringNullableFilter<"RegistrationRequest"> | string | null
-  passwordHash?: Prisma.StringFilter<"RegistrationRequest"> | string
+  password?: Prisma.StringFilter<"RegistrationRequest"> | string
+  classRoll?: Prisma.StringNullableFilter<"RegistrationRequest"> | string | null
   requestType?: Prisma.EnumRequestTypeFilter<"RegistrationRequest"> | $Enums.RequestType
   status?: Prisma.EnumRequestStatusFilter<"RegistrationRequest"> | $Enums.RequestStatus
   classId?: Prisma.StringNullableFilter<"RegistrationRequest"> | string | null
@@ -291,7 +301,8 @@ export type RegistrationRequestOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
-  passwordHash?: Prisma.SortOrder
+  password?: Prisma.SortOrder
+  classRoll?: Prisma.SortOrderInput | Prisma.SortOrder
   requestType?: Prisma.SortOrder
   status?: Prisma.SortOrder
   classId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -313,7 +324,8 @@ export type RegistrationRequestScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"RegistrationRequest"> | string
   email?: Prisma.StringWithAggregatesFilter<"RegistrationRequest"> | string
   phone?: Prisma.StringNullableWithAggregatesFilter<"RegistrationRequest"> | string | null
-  passwordHash?: Prisma.StringWithAggregatesFilter<"RegistrationRequest"> | string
+  password?: Prisma.StringWithAggregatesFilter<"RegistrationRequest"> | string
+  classRoll?: Prisma.StringNullableWithAggregatesFilter<"RegistrationRequest"> | string | null
   requestType?: Prisma.EnumRequestTypeWithAggregatesFilter<"RegistrationRequest"> | $Enums.RequestType
   status?: Prisma.EnumRequestStatusWithAggregatesFilter<"RegistrationRequest"> | $Enums.RequestStatus
   classId?: Prisma.StringNullableWithAggregatesFilter<"RegistrationRequest"> | string | null
@@ -329,7 +341,8 @@ export type RegistrationRequestCreateInput = {
   name: string
   email: string
   phone?: string | null
-  passwordHash: string
+  password: string
+  classRoll?: string | null
   requestType: $Enums.RequestType
   status?: $Enums.RequestStatus
   parentPhone?: string | null
@@ -345,7 +358,8 @@ export type RegistrationRequestUncheckedCreateInput = {
   name: string
   email: string
   phone?: string | null
-  passwordHash: string
+  password: string
+  classRoll?: string | null
   requestType: $Enums.RequestType
   status?: $Enums.RequestStatus
   classId?: string | null
@@ -361,7 +375,8 @@ export type RegistrationRequestUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   requestType?: Prisma.EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
   status?: Prisma.EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
   parentPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -377,7 +392,8 @@ export type RegistrationRequestUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   requestType?: Prisma.EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
   status?: Prisma.EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
   classId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -393,7 +409,8 @@ export type RegistrationRequestCreateManyInput = {
   name: string
   email: string
   phone?: string | null
-  passwordHash: string
+  password: string
+  classRoll?: string | null
   requestType: $Enums.RequestType
   status?: $Enums.RequestStatus
   classId?: string | null
@@ -409,7 +426,8 @@ export type RegistrationRequestUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   requestType?: Prisma.EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
   status?: Prisma.EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
   parentPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -424,7 +442,8 @@ export type RegistrationRequestUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   requestType?: Prisma.EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
   status?: Prisma.EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
   classId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -450,7 +469,8 @@ export type RegistrationRequestCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  passwordHash?: Prisma.SortOrder
+  password?: Prisma.SortOrder
+  classRoll?: Prisma.SortOrder
   requestType?: Prisma.SortOrder
   status?: Prisma.SortOrder
   classId?: Prisma.SortOrder
@@ -466,7 +486,8 @@ export type RegistrationRequestMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  passwordHash?: Prisma.SortOrder
+  password?: Prisma.SortOrder
+  classRoll?: Prisma.SortOrder
   requestType?: Prisma.SortOrder
   status?: Prisma.SortOrder
   classId?: Prisma.SortOrder
@@ -482,7 +503,8 @@ export type RegistrationRequestMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  passwordHash?: Prisma.SortOrder
+  password?: Prisma.SortOrder
+  classRoll?: Prisma.SortOrder
   requestType?: Prisma.SortOrder
   status?: Prisma.SortOrder
   classId?: Prisma.SortOrder
@@ -543,16 +565,13 @@ export type EnumRequestStatusFieldUpdateOperationsInput = {
   set?: $Enums.RequestStatus
 }
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
 export type RegistrationRequestCreateWithoutClassInput = {
   id?: string
   name: string
   email: string
   phone?: string | null
-  passwordHash: string
+  password: string
+  classRoll?: string | null
   requestType: $Enums.RequestType
   status?: $Enums.RequestStatus
   parentPhone?: string | null
@@ -567,7 +586,8 @@ export type RegistrationRequestUncheckedCreateWithoutClassInput = {
   name: string
   email: string
   phone?: string | null
-  passwordHash: string
+  password: string
+  classRoll?: string | null
   requestType: $Enums.RequestType
   status?: $Enums.RequestStatus
   parentPhone?: string | null
@@ -611,7 +631,8 @@ export type RegistrationRequestScalarWhereInput = {
   name?: Prisma.StringFilter<"RegistrationRequest"> | string
   email?: Prisma.StringFilter<"RegistrationRequest"> | string
   phone?: Prisma.StringNullableFilter<"RegistrationRequest"> | string | null
-  passwordHash?: Prisma.StringFilter<"RegistrationRequest"> | string
+  password?: Prisma.StringFilter<"RegistrationRequest"> | string
+  classRoll?: Prisma.StringNullableFilter<"RegistrationRequest"> | string | null
   requestType?: Prisma.EnumRequestTypeFilter<"RegistrationRequest"> | $Enums.RequestType
   status?: Prisma.EnumRequestStatusFilter<"RegistrationRequest"> | $Enums.RequestStatus
   classId?: Prisma.StringNullableFilter<"RegistrationRequest"> | string | null
@@ -627,7 +648,8 @@ export type RegistrationRequestCreateManyClassInput = {
   name: string
   email: string
   phone?: string | null
-  passwordHash: string
+  password: string
+  classRoll?: string | null
   requestType: $Enums.RequestType
   status?: $Enums.RequestStatus
   parentPhone?: string | null
@@ -642,7 +664,8 @@ export type RegistrationRequestUpdateWithoutClassInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   requestType?: Prisma.EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
   status?: Prisma.EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
   parentPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -657,7 +680,8 @@ export type RegistrationRequestUncheckedUpdateWithoutClassInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   requestType?: Prisma.EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
   status?: Prisma.EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
   parentPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -672,7 +696,8 @@ export type RegistrationRequestUncheckedUpdateManyWithoutClassInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   requestType?: Prisma.EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
   status?: Prisma.EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
   parentPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -689,7 +714,8 @@ export type RegistrationRequestSelect<ExtArgs extends runtime.Types.Extensions.I
   name?: boolean
   email?: boolean
   phone?: boolean
-  passwordHash?: boolean
+  password?: boolean
+  classRoll?: boolean
   requestType?: boolean
   status?: boolean
   classId?: boolean
@@ -706,7 +732,8 @@ export type RegistrationRequestSelectCreateManyAndReturn<ExtArgs extends runtime
   name?: boolean
   email?: boolean
   phone?: boolean
-  passwordHash?: boolean
+  password?: boolean
+  classRoll?: boolean
   requestType?: boolean
   status?: boolean
   classId?: boolean
@@ -723,7 +750,8 @@ export type RegistrationRequestSelectUpdateManyAndReturn<ExtArgs extends runtime
   name?: boolean
   email?: boolean
   phone?: boolean
-  passwordHash?: boolean
+  password?: boolean
+  classRoll?: boolean
   requestType?: boolean
   status?: boolean
   classId?: boolean
@@ -740,7 +768,8 @@ export type RegistrationRequestSelectScalar = {
   name?: boolean
   email?: boolean
   phone?: boolean
-  passwordHash?: boolean
+  password?: boolean
+  classRoll?: boolean
   requestType?: boolean
   status?: boolean
   classId?: boolean
@@ -751,7 +780,7 @@ export type RegistrationRequestSelectScalar = {
   updatedAt?: boolean
 }
 
-export type RegistrationRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "phone" | "passwordHash" | "requestType" | "status" | "classId" | "parentPhone" | "reviewNote" | "reviewedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["registrationRequest"]>
+export type RegistrationRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "phone" | "password" | "classRoll" | "requestType" | "status" | "classId" | "parentPhone" | "reviewNote" | "reviewedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["registrationRequest"]>
 export type RegistrationRequestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   class?: boolean | Prisma.RegistrationRequest$classArgs<ExtArgs>
 }
@@ -772,7 +801,8 @@ export type $RegistrationRequestPayload<ExtArgs extends runtime.Types.Extensions
     name: string
     email: string
     phone: string | null
-    passwordHash: string
+    password: string
+    classRoll: string | null
     requestType: $Enums.RequestType
     status: $Enums.RequestStatus
     classId: string | null
@@ -1209,7 +1239,8 @@ export interface RegistrationRequestFieldRefs {
   readonly name: Prisma.FieldRef<"RegistrationRequest", 'String'>
   readonly email: Prisma.FieldRef<"RegistrationRequest", 'String'>
   readonly phone: Prisma.FieldRef<"RegistrationRequest", 'String'>
-  readonly passwordHash: Prisma.FieldRef<"RegistrationRequest", 'String'>
+  readonly password: Prisma.FieldRef<"RegistrationRequest", 'String'>
+  readonly classRoll: Prisma.FieldRef<"RegistrationRequest", 'String'>
   readonly requestType: Prisma.FieldRef<"RegistrationRequest", 'RequestType'>
   readonly status: Prisma.FieldRef<"RegistrationRequest", 'RequestStatus'>
   readonly classId: Prisma.FieldRef<"RegistrationRequest", 'String'>

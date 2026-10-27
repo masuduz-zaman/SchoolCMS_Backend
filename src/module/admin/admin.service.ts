@@ -7,13 +7,13 @@ const getRegisterRequestInDb = async (requestId: string) => {
       where: {
         id: requestId,
       },
-      orderBy:{
-        createdAt:"desc"
-      }
+      orderBy: {
+        createdAt: "desc",
+      },
     });
-    return allRequests
+    return allRequests;
   });
-  return requests
+  return requests;
 };
 const approveRequest = async (
   requestId: string,
@@ -133,42 +133,91 @@ const createClassInDb = async (payload: {
   return result;
 };
 
-const getAllClassInDb = async (classId:string)=>{
-  const result = await prisma.$transaction(async(tx)=>{
-    const allClass = await prisma.class.findMany({
-      where:{
-        id:classId,
-      },
-      orderBy:{
-        updatedAt:"desc"
-      }
-    })
-    return allClass
-  })
-  return result
-}
+const getAllClassInDb = async () => {
+  const allClass = await prisma.class.findMany({
+    select: {
+      id: true,
+      name: true,
+      description: true,
 
-const getStudentByClassInDb = async(classId:string, studentId:string)=>{
-  const transactionByClassStudent = await prisma.$transaction(async(tx)=>{
-    const result = await prisma.class.findMany({
-      where:{
-        id:classId,
-        students:{
-          some:{
-            id:studentId,
-          }
-        }
+      students: {
+        select: {
+          id: true,
+          parentPhone: true,
+          user: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              phone: true,
+            },
+          },
+        },
       },
-    })
-    return result
+
+      _count: {
+        select: {
+          students: true,
+        },
+      },
+    },
+
+    orderBy: {
+      updatedAt: "desc",
+    },
+  });
+
+  return allClass.map((classItem) => ({
+    id: classItem.id,
+    name: classItem.name,
+    description: classItem.description,
+    totalStudents: classItem._count.students,
+    students: classItem.students,
+  }));
+};
+
+const deleteUserInDb = async (id: string) => {
+  const deleteUser = await prisma.user.findUnique({
+    where: {
+      id: id,
+    },
+  });
+
+  if (!deleteUser) {
+    throw new Error("User not found");
+  }
+
+  await prisma.student.deleteMany({
+    where: {
+      userId: id,
+    },
+  });
+  await prisma.teacher.deleteMany({
+    where:{
+      userId: id,
+    }
   })
-  return transactionByClassStudent
-}
+
+  await prisma.profile.deleteMany({
+    where:{
+      userId:id
+    }
+  })
+  await prisma.user.delete({
+    where: { id },
+  });
+  return {
+    name: deleteUser?.name,
+    email: deleteUser?.email,
+  };
+};
+
+const addAdmissionInDb = async()=>{}
 
 export const adminService = {
   getRegisterRequestInDb,
   approveRequest,
   createClassInDb,
   getAllClassInDb,
-  getStudentByClassInDb
+  deleteUserInDb,
 };

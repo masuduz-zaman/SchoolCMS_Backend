@@ -3,6 +3,10 @@ model AdmissionNotice {
   title       String
   content     String
   isPublished Boolean   @default(false)
+  isExpired   Boolean   @default(false)
+
+  publishedAt DateTime?
+  expiresAt   DateTime?
 
   createdById String
   createdBy   User     @relation(fields: [createdById], references: [id], onDelete: Restrict)
@@ -10,5 +14,5 @@ model AdmissionNotice {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
-  @@index([isPublished, createdAt])
+  @@index([isPublished, isExpired, createdAt])
 }

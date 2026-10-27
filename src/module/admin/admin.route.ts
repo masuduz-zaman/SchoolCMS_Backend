@@ -9,6 +9,7 @@ router.get("/all-requests", auth("ADMIN"),adminController.getRegisterRequest)
 router.patch("/status/:requestId", auth(UserRole.ADMIN), adminController.approveRequest)
 router.post("/add-class",auth("ADMIN"),adminController.createClass)
 router.get("/all-class", adminController.getAllClass)
+router.delete("/delete/:id", auth("ADMIN"), adminController.deleteUser)
 
 
 export const adminRoute = router

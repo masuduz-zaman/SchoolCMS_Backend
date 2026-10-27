@@ -62,6 +62,11 @@ export type ClassRoutine = Prisma.ClassRoutineModel
  */
 export type TeacherClass = Prisma.TeacherClassModel
 /**
+ * Model Profile
+ * 
+ */
+export type Profile = Prisma.ProfileModel
+/**
  * Model RegistrationRequest
  * 
  */
