@@ -1,6 +1,6 @@
 import app from "./app.js";
-import config from "./config";
-import { initNoticeScheduler } from "./cron/noticeScheduler";
+import config from "./config/index.js";
+import { initNoticeScheduler } from "./cron/noticeScheduler.js";
 import { prisma } from "./lib/prisma.js";
 
 const PORT = config.port || 5000;
