@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../lib/prisma.js";
 import { ILoginUser, RegisterUserPayload } from "./auth.interface";
 import config from "../../config";
 import { RequestStatus, RequestType, UserRole } from "@prisma/client";
@@ -81,10 +81,10 @@ const registrationRequestInDb = async (payload: RegisterUserPayload) => {
       },
       select: { id: true },
     });
-    if(!existingClass){
-      throw new Error("Class not found")
+    if (!existingClass) {
+      throw new Error("Class not found");
     }
-    classId = existingClass.id
+    classId = existingClass.id;
   }
 
   const hashedPassword = await bcrypt.hash(

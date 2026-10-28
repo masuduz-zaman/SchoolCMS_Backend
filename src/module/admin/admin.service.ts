@@ -1,5 +1,5 @@
 import { Prisma, RequestStatus, RequestType, UserRole } from "@prisma/client";
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../lib/prisma.js";
 import { admissionPayload, classPayload } from "./admin.interface";
 
 const getRegisterRequestInDb = async (requestId: string) => {
@@ -210,7 +210,6 @@ const deleteUserInDb = async (id: string) => {
   };
 };
 
-
 const createAdmissionNoticeInDb = async (payload: admissionPayload) => {
   const { title, content, adminId, publishDate, durationInDays } = payload;
 
@@ -242,7 +241,6 @@ const createAdmissionNoticeInDb = async (payload: admissionPayload) => {
 
   return newNotice;
 };
-
 
 export const adminService = {
   getRegisterRequestInDb,
