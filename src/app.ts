@@ -1,11 +1,12 @@
-import express, { Application, Request, Response } from 'express';
-import cookieParser from 'cookie-parser';
-import cors from 'cors';
-import config from './config';
-import { authRoute } from './module/auth/auth.route';
-import { notFound } from './middleware/notFound';
-import { globalErrorHandler } from './middleware/globalError';
-import { adminRoute } from './module/admin/admin.route';
+import express from "express";
+import type { Application, Request, Response } from "express";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import config from "./config/index.js";
+import { authRoute } from "./module/auth/auth.route.js";
+import { notFound } from "./middleware/notFound.js";
+import { globalErrorHandler } from "./middleware/globalError.js";
+import { adminRoute } from "./module/admin/admin.route.js";
 
 const app: Application = express();
 
