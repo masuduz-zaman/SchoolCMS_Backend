@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "./dist",
-    // "rootDir": "./src",
+    "rootDir": "./src",
     "module": "ESNext",
     "moduleResolution": "bundler",
     "target": "ES2023",
@@ -16,9 +16,9 @@
     "moduleDetection": "force",
     "skipLibCheck": true
   },
-  // "include": [
-  //   "src/**/*.ts"
-  // ],
+  "include": [
+    "src/**/*.ts"
+  ],
   "exclude": [
     "node_modules",
     "dist",
