@@ -210,25 +210,23 @@ const deleteUserInDb = async (id: string) => {
   };
 };
 
+
 const createAdmissionNoticeInDb = async (payload: admissionPayload) => {
   const { title, content, adminId, publishDate, durationInDays } = payload;
-  let publishedAt: Date;
-  let expiresAt: Date | undefined;
-  let isPublished = false;
+
   const now = new Date();
 
-  if (publishDate) {
-    publishedAt = new Date(publishDate);
-    if (publishedAt <= now) {
-      isPublished = true;
-    }
-  } else {
-    publishedAt = now;
-    isPublished = true;
-  }
-  if (durationInDays && publishDate) {
+  const publishedAt = publishDate ? new Date(publishDate) : now;
+  const isPublished = publishedAt <= now;
+
+  let expiresAt: Date;
+
+  if (durationInDays && durationInDays > 0) {
     expiresAt = new Date(publishedAt);
     expiresAt.setDate(expiresAt.getDate() + durationInDays);
+  } else {
+    expiresAt = new Date(publishedAt);
+    expiresAt.setDate(expiresAt.getDate() + 30);
   }
 
   const newNotice = await prisma.admissionNotice.create({
@@ -241,8 +239,10 @@ const createAdmissionNoticeInDb = async (payload: admissionPayload) => {
       createdById: adminId,
     },
   });
+
   return newNotice;
 };
+
 
 export const adminService = {
   getRegisterRequestInDb,
