@@ -1,7 +1,7 @@
 import app from "./app.js";
 import config from "./config";
 import { initNoticeScheduler } from "./cron/noticeScheduler";
-import { prisma } from "./lib/prisma";
+import { prisma } from "./lib/prisma.js";
 
 const PORT = config.port || 5000;
 
