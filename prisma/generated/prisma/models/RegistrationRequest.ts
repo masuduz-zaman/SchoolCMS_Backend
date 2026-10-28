@@ -565,6 +565,10 @@ export type EnumRequestStatusFieldUpdateOperationsInput = {
   set?: $Enums.RequestStatus
 }
 
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
 export type RegistrationRequestCreateWithoutClassInput = {
   id?: string
   name: string

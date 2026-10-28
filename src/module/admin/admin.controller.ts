@@ -68,6 +68,16 @@ const deleteUser = catchAsync(async(req:Request,res:Response)=>{
     message: `${result.name} deleted successfully`,
     data: result,
   })
+});
+
+const createAdmissionNotice = catchAsync(async(req,res)=>{
+  const notice = await adminService.createAdmissionNoticeInDb(req.body);
+  sendResponse(res,{
+    statusCode:200,
+    success:true,
+    message:"Notice Created Successfully",
+    data:notice
+  });
 })
 
 export const adminController = {
@@ -76,4 +86,5 @@ export const adminController = {
   createClass,
   getAllClass,
   deleteUser,
+  createAdmissionNotice,
 };

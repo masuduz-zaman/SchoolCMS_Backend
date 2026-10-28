@@ -1,5 +1,6 @@
 import { Prisma, RequestStatus, RequestType, UserRole } from "@prisma/client";
 import { prisma } from "../../lib/prisma";
+import { admissionPayload, classPayload } from "./admin.interface";
 
 const getRegisterRequestInDb = async (requestId: string) => {
   const requests = await prisma.$transaction(async (tx) => {
@@ -112,10 +113,7 @@ const approveRequest = async (
   });
 };
 
-const createClassInDb = async (payload: {
-  name: string;
-  description?: string;
-}) => {
+const createClassInDb = async (payload: classPayload) => {
   const existingClass = await prisma.class.findUniqueOrThrow({
     where: {
       name: payload.name,
@@ -193,16 +191,16 @@ const deleteUserInDb = async (id: string) => {
     },
   });
   await prisma.teacher.deleteMany({
-    where:{
+    where: {
       userId: id,
-    }
-  })
+    },
+  });
 
   await prisma.profile.deleteMany({
-    where:{
-      userId:id
-    }
-  })
+    where: {
+      userId: id,
+    },
+  });
   await prisma.user.delete({
     where: { id },
   });
@@ -212,7 +210,39 @@ const deleteUserInDb = async (id: string) => {
   };
 };
 
-const addAdmissionInDb = async()=>{}
+const createAdmissionNoticeInDb = async (payload: admissionPayload) => {
+  const { title, content, adminId, publishDate, durationInDays } = payload;
+  let publishedAt: Date;
+  let expiresAt: Date | undefined;
+  let isPublished = false;
+  const now = new Date();
+
+  if (publishDate) {
+    publishedAt = new Date(publishDate);
+    if (publishedAt <= now) {
+      isPublished = true;
+    }
+  } else {
+    publishedAt = now;
+    isPublished = true;
+  }
+  if (durationInDays && publishDate) {
+    expiresAt = new Date(publishedAt);
+    expiresAt.setDate(expiresAt.getDate() + durationInDays);
+  }
+
+  const newNotice = await prisma.admissionNotice.create({
+    data: {
+      title,
+      content,
+      isPublished,
+      publishedAt,
+      expiresAt,
+      createdById: adminId,
+    },
+  });
+  return newNotice;
+};
 
 export const adminService = {
   getRegisterRequestInDb,
@@ -220,4 +250,5 @@ export const adminService = {
   createClassInDb,
   getAllClassInDb,
   deleteUserInDb,
+  createAdmissionNoticeInDb,
 };

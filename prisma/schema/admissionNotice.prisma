@@ -5,8 +5,8 @@ model AdmissionNotice {
   isPublished Boolean   @default(false)
   isExpired   Boolean   @default(false)
 
-  publishedAt DateTime?
-  expiresAt   DateTime?
+  publishedAt DateTime
+  expiresAt   DateTime
 
   createdById String
   createdBy   User     @relation(fields: [createdById], references: [id], onDelete: Restrict)

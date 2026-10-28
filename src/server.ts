@@ -1,5 +1,6 @@
 import app from "./app";
 import config from "./config";
+import { initNoticeScheduler } from "./cron/noticeScheduler";
 import { prisma } from "./lib/prisma";
 
 const PORT = config.port || 5000;
@@ -8,6 +9,8 @@ async function main() {
   try {
     await prisma.$connect();
     console.log("Connected to the database successfully.");
+    initNoticeScheduler();
+    console.log("Background Notice Scheduler initialized successfully.");
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });
