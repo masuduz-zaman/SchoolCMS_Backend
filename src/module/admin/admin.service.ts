@@ -1,6 +1,6 @@
 import { Prisma, RequestStatus, RequestType, UserRole } from "@prisma/client";
 import { prisma } from "../../lib/prisma.js";
-import { admissionPayload, classPayload } from "./admin.interface";
+import type { admissionPayload, classPayload } from "./admin.interface.js";
 
 const getRegisterRequestInDb = async (requestId: string) => {
   const requests = await prisma.$transaction(async (tx) => {

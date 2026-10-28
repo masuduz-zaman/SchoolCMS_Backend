@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { catchAsync } from "../../utils/catchAsync";
-import { sendResponse } from "../../utils/sendResponse";
-import { adminService } from "./admin.service";
+import { catchAsync } from "../../utils/catchAsync.js";
+import { sendResponse } from "../../utils/sendResponse.js";
+import { adminService } from "./admin.service.js";
 import { UserRole } from "@prisma/client";
 
 const getRegisterRequest = catchAsync(async (req: Request, res: Response) => {

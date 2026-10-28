@@ -1,10 +1,10 @@
 import bcrypt from "bcryptjs";
 import { prisma } from "../../lib/prisma.js";
-import { ILoginUser, RegisterUserPayload } from "./auth.interface";
-import config from "../../config";
+import { ILoginUser, RegisterUserPayload } from "./auth.interface.js";
+import config from "../../config/index.js";
 import { RequestStatus, RequestType, UserRole } from "@prisma/client";
-import { jwtUtils } from "../../utils/jwtUtils";
-import { SignOptions } from "jsonwebtoken";
+import { jwtUtils } from "../../utils/jwtUtils.js";
+import type { SignOptions } from "jsonwebtoken";
 
 // const registeredUserIntoDb = async (payload: RegisterUserPayload) => {
 //   const { name, email, password, profileImage } = payload;

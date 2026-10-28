@@ -1,7 +1,7 @@
-import { catchAsync } from "../../utils/catchAsync";
+import { catchAsync } from "../../utils/catchAsync.js";
 import { Request, Response, NextFunction } from "express";
-import { sendResponse } from "../../utils/sendResponse";
-import { authService } from "./auth.service";
+import { sendResponse } from "../../utils/sendResponse.js";
+import { authService } from "./auth.service.js";
 
 const registrationRequest = catchAsync(async (req: Request, res: Response) => {
   const result = await authService.registrationRequestInDb(req.body);
