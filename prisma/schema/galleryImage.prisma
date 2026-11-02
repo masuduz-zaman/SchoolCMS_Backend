@@ -6,6 +6,7 @@ model GalleryImage {
 
   categoryId  String
   galleryCategory GalleryCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  publicId String?
 
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt

@@ -103,6 +103,17 @@ const getContent = catchAsync(async(req,res)=>{
   })
 })
 
+const deleteContent = catchAsync(async(req,res)=>{
+  const result = await adminService.deleteContentInDb(req.params.id as string)
+
+  sendResponse(res,{
+    success:true,
+    statusCode:200,
+    message:"Content deleted successfully",
+    data: result
+  })
+})
+
 const createCategory = catchAsync(async(req,res)=>{
   const result = await adminService.createCategoryInDb(req.body)
 
@@ -124,6 +135,35 @@ const uploadImage = catchAsync(async (req, res) => {
     statusCode: 201,
     success: true,
     message: "Gallery image uploaded successfully",
+    data: result,
+  });
+});
+const getAllCategories = catchAsync(async (req: Request, res: Response) => {
+  const result = await adminService.getAllCategoriesInDb();
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "All Categories Fetched Successfully",
+    data: result,
+  });
+});
+
+const deleteImage = catchAsync(async (req: Request, res: Response) => {
+  const result = await adminService.deleteImageInDb(req.params.id as string);
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Image deleted successfully",
+    data: result,
+  });
+});
+
+const deleteCategory = catchAsync(async (req: Request, res: Response) => {
+  const result = await adminService.deleteCategoryInDb(req.params.id as string);
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Category deleted successfully",
     data: result,
   });
 });
@@ -169,10 +209,14 @@ export const adminController = {
   deleteUser,
   createAdmissionNotice,
   createContent,
+  deleteContent,
   createCategory,
   uploadImage,
   getAllStudents,
   getAllTeachers,
   updateUserStatus,
   getContent,
+  deleteImage,
+  deleteCategory,
+  getAllCategories,
 };

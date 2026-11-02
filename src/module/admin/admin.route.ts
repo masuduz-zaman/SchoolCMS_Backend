@@ -15,9 +15,13 @@ router.post("/create-notice",auth("ADMIN"), adminController.createAdmissionNotic
 router.post("/create-content", auth("ADMIN"), adminController.createContent)
 router.post("/category", auth("ADMIN"), adminController.createCategory)
 router.post("/image", auth("ADMIN"), upload.single("image"), adminController.uploadImage)
+router.get("/categories", auth("ADMIN"), adminController.getAllCategories)
+router.delete("/image/:id", auth("ADMIN"), adminController.deleteImage)
+router.delete("/category/:id", auth("ADMIN"), adminController.deleteCategory)  
 router.get("/all-students", auth("ADMIN"), adminController.getAllStudents)
 router.get("/all-teachers", auth("ADMIN"), adminController.getAllTeachers)
 router.patch("/user-status/:id", auth("ADMIN"), adminController.updateUserStatus)
 router.get("/content", adminController.getContent)
+router.delete("/content/:id", auth("ADMIN"), adminController.deleteContent)
 
 export const adminRoute = router

@@ -329,6 +329,14 @@ const getContentInDb = async () => {
   return result;
 };
 
+const deleteContentInDb = async (id: string) => {
+  const existing = await prisma.schoolContent.findUnique({ where: { id } });
+  if (!existing) {
+    throw new Error("Content not found");
+  }
+  return prisma.schoolContent.delete({ where: { id } });
+};
+
 const createCategoryInDb = async (payload: category) => {
   const { name, slug } = payload;
   const existingCategory = await prisma.galleryCategory.findFirst({
@@ -400,10 +408,45 @@ const uploadImageInDb = async (
       title: payload.title,
       description: payload.description,
       categoryId: payload.categoryId,
+      publicId: uploadResult.public_id,
     },
   });
 
   return image;
+};
+
+const getAllCategoriesInDb = async () => {
+  return prisma.galleryCategory.findMany({
+    orderBy: { createdAt: "desc" },
+    include: { images: { orderBy: { createdAt: "desc" } } },
+  });
+};
+
+const deleteImageInDb = async (id: string) => {
+  const image = await prisma.galleryImage.findUnique({ where: { id } });
+  if (!image) throw new Error("Image not found");
+
+  if (image.publicId) {
+    await cloudinary.uploader.destroy(image.publicId);
+  }
+  return prisma.galleryImage.delete({ where: { id } });
+};
+
+const deleteCategoryInDb = async (id: string) => {
+  const category = await prisma.galleryCategory.findUnique({
+    where: { id },
+    include: { images: true },
+  });
+  if (!category) throw new Error("Gallery category not found");
+
+  const publicIds = category.images
+    .map((img) => img.publicId)
+    .filter((p): p is string => !!p);
+
+  if (publicIds.length) {
+    await cloudinary.api.delete_resources(publicIds);
+  }
+  return prisma.galleryCategory.delete({ where: { id } });
 };
 
 const getAllStudentsInDb = async () => {
@@ -500,9 +543,13 @@ export const adminService = {
   createAdmissionNoticeInDb,
   createContentInDb,
   getContentInDb,
+  deleteContentInDb,
   createCategoryInDb,
   uploadImageInDb,
   getAllStudentsInDb,
   getAllTeachersInDb,
   updateUserStatusInDb,
+  getAllCategoriesInDb,
+  deleteImageInDb,
+  deleteCategoryInDb,
 };

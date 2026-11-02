@@ -132,6 +132,7 @@ const getCategoryInDb = async(categoryId:string)=>{
       images:true
     }
   })
+  return category
 }
 
 export const publicService ={
