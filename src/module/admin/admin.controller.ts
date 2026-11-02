@@ -5,7 +5,7 @@ import { adminService } from "./admin.service.js";
 import { UserRole } from "@prisma/client";
 
 const getRegisterRequest = catchAsync(async (req: Request, res: Response) => {
-  const result = await adminService.getRegisterRequestInDb(req.body);
+  const result = await adminService.getRegisterRequestInDb(req.query.requestId as string);
   sendResponse(res, {
     success: true,
     statusCode: 200,
@@ -71,7 +71,8 @@ const deleteUser = catchAsync(async(req:Request,res:Response)=>{
 });
 
 const createAdmissionNotice = catchAsync(async(req,res)=>{
-  const notice = await adminService.createAdmissionNoticeInDb(req.body);
+  const adminId = req.user?.id
+  const notice = await adminService.createAdmissionNoticeInDb(req.body, adminId as string);
   sendResponse(res,{
     statusCode:200,
     success:true,
@@ -80,6 +81,86 @@ const createAdmissionNotice = catchAsync(async(req,res)=>{
   });
 })
 
+const createContent = catchAsync(async(req,res)=>{
+  const result = await adminService.createContentInDb(req.body)
+
+  sendResponse(res,{
+    success:true,
+    statusCode:200,
+    message:"content create successfully",
+    data: result
+  })
+})
+
+const getContent = catchAsync(async(req,res)=>{
+  const result = await adminService.getContentInDb()
+
+  sendResponse(res,{
+    success:true,
+    statusCode:200,
+    message:"Content fetched successfully",
+    data: result
+  })
+})
+
+const createCategory = catchAsync(async(req,res)=>{
+  const result = await adminService.createCategoryInDb(req.body)
+
+  sendResponse(res,{
+    success:true,
+    statusCode:200,
+    message:"Category create successfully",
+    data: result
+  })
+})
+
+const uploadImage = catchAsync(async (req, res) => {
+  const result = await adminService.uploadImageInDb(
+    req.file!,
+    req.body
+  );
+
+  sendResponse(res, {
+    statusCode: 201,
+    success: true,
+    message: "Gallery image uploaded successfully",
+    data: result,
+  });
+});
+
+const getAllStudents = catchAsync(async (req: Request, res: Response) => {
+  const result = await adminService.getAllStudentsInDb();
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "All Students Fetched Successfully",
+    data: result,
+  });
+});
+
+const getAllTeachers = catchAsync(async (req: Request, res: Response) => {
+  const result = await adminService.getAllTeachersInDb();
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "All Teachers Fetched Successfully",
+    data: result,
+  });
+});
+
+const updateUserStatus = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  const result = await adminService.updateUserStatusInDb(id as string, status);
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "User status updated successfully",
+    data: result,
+  });
+});
+
 export const adminController = {
   getRegisterRequest,
   approveRequest,
@@ -87,4 +168,11 @@ export const adminController = {
   getAllClass,
   deleteUser,
   createAdmissionNotice,
+  createContent,
+  createCategory,
+  uploadImage,
+  getAllStudents,
+  getAllTeachers,
+  updateUserStatus,
+  getContent,
 };

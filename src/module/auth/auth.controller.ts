@@ -13,22 +13,25 @@ const registrationRequest = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-
-
 const loginUser = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const payload = req.body;
-    const { accessToken, refreshToken } = await authService.loginUserIntoDb(payload);
+    const { accessToken, refreshToken } =
+      await authService.loginUserIntoDb(payload);
 
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
       secure: false,
+      sameSite: "lax",
+      path: "/",
       maxAge: 1000 * 60 * 60 * 24,
     });
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       secure: false,
+      sameSite: "lax",
+      path: "/",
       maxAge: 1000 * 60 * 60 * 24 * 7,
     });
 
@@ -37,8 +40,35 @@ const loginUser = catchAsync(
       statusCode: 200,
       message: "User logged in successfully",
       data: {
-        accessToken, refreshToken
+        accessToken,
+        refreshToken,
       },
+    });
+  },
+);
+
+export const logoutUser = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+
+    res.clearCookie("accessToken", {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+      path: "/",
+    });
+
+    res.clearCookie("refreshToken", {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+      path: "/",
+    });
+
+    sendResponse(res, {
+      success: true,
+      statusCode: 200,
+      message: "User logged out successfully",
+      data: null,
     });
   },
 );
@@ -46,4 +76,5 @@ const loginUser = catchAsync(
 export const authController = {
   registrationRequest,
   loginUser,
+  logoutUser,
 };

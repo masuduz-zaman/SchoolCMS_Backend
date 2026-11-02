@@ -1,0 +1,14 @@
+model GalleryImage {
+  id          String           @id @default(uuid())
+  imageUrl    String
+  title       String?
+  description String?
+
+  categoryId  String
+  galleryCategory GalleryCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  @@index([categoryId, createdAt])
+}

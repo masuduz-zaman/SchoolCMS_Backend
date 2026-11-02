@@ -7,6 +7,7 @@ import { authRoute } from "./module/auth/auth.route.js";
 import { notFound } from "./middleware/notFound.js";
 import { globalErrorHandler } from "./middleware/globalError.js";
 import { adminRoute } from "./module/admin/admin.route.js";
+import { publicRoute } from "./module/public/public.route.js";
 
 const app: Application = express();
 
@@ -21,6 +22,7 @@ app.use(cookieParser())
 
 app.use("/api/auth", authRoute)
 app.use("/api/admin", adminRoute)
+app.use("/api", publicRoute)
 
 app.use(notFound)
 app.use(globalErrorHandler)

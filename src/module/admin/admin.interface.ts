@@ -12,3 +12,19 @@ export interface classPayload {
   name: string;
   description?: string;
 }
+
+export interface contentPayload {
+  headTeacherMessage: string;
+  updatedById: string;
+}
+
+export interface category {
+  name:string,
+  slug:string,
+}
+
+export interface IUploadGalleryImage {
+  categoryId: string;
+  title?: string;
+  description?: string;
+}

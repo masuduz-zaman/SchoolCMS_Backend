@@ -1,6 +1,13 @@
 import { Prisma, RequestStatus, RequestType, UserRole } from "@prisma/client";
 import { prisma } from "../../lib/prisma.js";
-import type { admissionPayload, classPayload } from "./admin.interface.js";
+import type {
+  admissionPayload,
+  category,
+  classPayload,
+  contentPayload,
+  IUploadGalleryImage,
+} from "./admin.interface.js";
+import { cloudinary } from "../../lib/cloudinary.js";
 
 const getRegisterRequestInDb = async (requestId: string) => {
   const requests = await prisma.$transaction(async (tx) => {
@@ -16,12 +23,14 @@ const getRegisterRequestInDb = async (requestId: string) => {
   });
   return requests;
 };
+
 const approveRequest = async (
   requestId: string,
   adminId: string,
   status: RequestStatus,
 ) => {
   return prisma.$transaction(async (tx) => {
+    // Verify admin
     const admin = await tx.user.findUnique({
       where: { id: adminId },
       select: { role: true },
@@ -31,9 +40,9 @@ const approveRequest = async (
       throw new Error("Only admin can process requests");
     }
 
+    // Allowed statuses
     const allowedStatuses: RequestStatus[] = [
       RequestStatus.APPROVED,
-      RequestStatus.REJECTED,
       RequestStatus.CANCELLED,
       RequestStatus.BLOCKED,
     ];
@@ -42,6 +51,7 @@ const approveRequest = async (
       throw new Error("Invalid request status");
     }
 
+    // Find registration request
     const request = await tx.registrationRequest.findUnique({
       where: { id: requestId },
     });
@@ -54,6 +64,7 @@ const approveRequest = async (
       throw new Error("Request already processed");
     }
 
+    // Create actual user only when approved
     if (status === RequestStatus.APPROVED) {
       const existingUser = await tx.user.findUnique({
         where: { email: request.email },
@@ -77,10 +88,6 @@ const approveRequest = async (
       });
 
       if (request.requestType === RequestType.STUDENT) {
-        // if (!request.parentPhone) {
-        //   throw new Error("Parent phone is required for student");
-        // }
-
         await tx.student.create({
           data: {
             userId: user.id,
@@ -99,8 +106,34 @@ const approveRequest = async (
       }
     }
 
-    await tx.registrationRequest.delete({
+    // IMPORTANT: Do not delete the registration request.
+    // Update its status so the applicant can track it.
+    const updatedRequest = await tx.registrationRequest.update({
       where: { id: requestId },
+      data: {
+        status,
+        reviewedAt: new Date(),
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        phone: true,
+        parentPhone: true,
+        classId: true,
+        classRoll: true,
+        requestType: true,
+        status: true,
+        reviewNote: true,
+        reviewedAt: true,
+        createdAt: true,
+        class: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
     });
 
     return {
@@ -108,7 +141,7 @@ const approveRequest = async (
         status === RequestStatus.APPROVED
           ? "Request approved successfully"
           : `Request ${status.toLowerCase()} successfully`,
-      status,
+      request: updatedRequest,
     };
   });
 };
@@ -210,8 +243,11 @@ const deleteUserInDb = async (id: string) => {
   };
 };
 
-const createAdmissionNoticeInDb = async (payload: admissionPayload) => {
-  const { title, content, adminId, publishDate, durationInDays } = payload;
+const createAdmissionNoticeInDb = async (
+  payload: admissionPayload,
+  adminId: string,
+) => {
+  const { title, content, publishDate, durationInDays } = payload;
 
   const now = new Date();
 
@@ -242,6 +278,219 @@ const createAdmissionNoticeInDb = async (payload: admissionPayload) => {
   return newNotice;
 };
 
+const createContentInDb = async (payload: contentPayload) => {
+  const { headTeacherMessage, updatedById } = payload;
+
+  const admin = await prisma.user.findUnique({
+    where: {
+      id: updatedById,
+    },
+  });
+
+  if (!admin || admin.role !== "ADMIN") {
+    throw new Error("Admin not found");
+  }
+
+  const result = await prisma.schoolContent.create({
+    data: {
+      headTeacherMessage,
+      updatedById,
+    },
+    include: {
+      updateBy: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        },
+      },
+    },
+  });
+
+  return result;
+};
+
+const getContentInDb = async () => {
+  const result = await prisma.schoolContent.findFirst({
+    orderBy: {
+      updatedAt: "desc",
+    },
+    include: {
+      updateBy: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        },
+      },
+    },
+  });
+
+  return result;
+};
+
+const createCategoryInDb = async (payload: category) => {
+  const { name, slug } = payload;
+  const existingCategory = await prisma.galleryCategory.findFirst({
+    where: {
+      OR: [{ name }, { slug }],
+    },
+  });
+
+  if (existingCategory) {
+    throw new Error("Gallery category name or slug already exists");
+  }
+
+  const category = await prisma.galleryCategory.create({
+    data: {
+      name,
+      slug,
+    },
+  });
+  return category;
+};
+
+const uploadImageInDb = async (
+  file: Express.Multer.File,
+  payload: IUploadGalleryImage,
+) => {
+  if (!file) {
+    throw new Error("Please select an image");
+  }
+
+  const category = await prisma.galleryCategory.findUnique({
+    where: {
+      id: payload.categoryId,
+    },
+  });
+
+  if (!category) {
+    throw new Error("Gallery category not found");
+  }
+
+  const uploadResult = await new Promise<{
+    secure_url: string;
+    public_id: string;
+  }>((resolve, reject) => {
+    const stream = cloudinary.uploader.upload_stream(
+      {
+        folder: "school-gallery",
+        resource_type: "image",
+      },
+      (error, result) => {
+        if (error) return reject(error);
+
+        if (!result) {
+          return reject(new Error("Image upload failed"));
+        }
+
+        resolve({
+          secure_url: result.secure_url,
+          public_id: result.public_id,
+        });
+      },
+    );
+
+    stream.end(file.buffer);
+  });
+
+  const image = await prisma.galleryImage.create({
+    data: {
+      imageUrl: uploadResult.secure_url,
+      title: payload.title,
+      description: payload.description,
+      categoryId: payload.categoryId,
+    },
+  });
+
+  return image;
+};
+
+const getAllStudentsInDb = async () => {
+  return prisma.student.findMany({
+    select: {
+      id: true,
+      classRoll: true,
+      parentPhone: true,
+      class: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          phone: true,
+          status: true,
+          createdAt: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+};
+
+const getAllTeachersInDb = async () => {
+  return prisma.teacher.findMany({
+    select: {
+      id: true,
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          phone: true,
+          status: true,
+          createdAt: true,
+        },
+      },
+      classesAsClassTeacher: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+};
+
+const updateUserStatusInDb = async (
+  userId: string,
+  status: "ACTIVE" | "SUSPENDED",
+) => {
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+  });
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  if (user.role === UserRole.ADMIN) {
+    throw new Error("Admin status cannot be changed here");
+  }
+
+  return prisma.user.update({
+    where: { id: userId },
+    data: { status },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+      status: true,
+    },
+  });
+};
+
 export const adminService = {
   getRegisterRequestInDb,
   approveRequest,
@@ -249,4 +498,11 @@ export const adminService = {
   getAllClassInDb,
   deleteUserInDb,
   createAdmissionNoticeInDb,
+  createContentInDb,
+  getContentInDb,
+  createCategoryInDb,
+  uploadImageInDb,
+  getAllStudentsInDb,
+  getAllTeachersInDb,
+  updateUserStatusInDb,
 };
