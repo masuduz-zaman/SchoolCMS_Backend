@@ -7,7 +7,6 @@ const router = Router()
 router.get("/me",auth("ADMIN","STUDENT","TEACHER"), publicController.getProfile)
 router.put("/profile", auth("ADMIN","STUDENT","TEACHER"), publicController.updateProfile)
 router.get("/notice", publicController.getNotice)
-router.get("/images", publicController.getCategory)
-
+router.get("/gallery-albums", publicController.getGalleryAlbums)
 
 export const publicRoute = router

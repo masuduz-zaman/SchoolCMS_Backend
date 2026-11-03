@@ -123,21 +123,25 @@ const getNoticeInDb = async () => {
   return notice;
 };
 
-const getCategoryInDb = async(categoryId:string)=>{
-  const category = await prisma.galleryCategory.findFirstOrThrow({
-    where:{
-      id:categoryId
+const getGalleryAlbumsInDb = async () => {
+  return prisma.galleryCategory.findMany({
+    where: { images: { some: {} } }, 
+    orderBy: { createdAt: "desc" },
+    select: {
+      id: true,
+      name: true,
+      slug: true,
+      images: {
+        orderBy: { createdAt: "desc" },
+        select: { id: true, imageUrl: true, title: true, description: true },
+      },
     },
-    include:{
-      images:true
-    }
-  })
-  return category
-}
+  });
+};
 
 export const publicService ={
     getProfileInDb,
     updateProfileIntoDb,
     getNoticeInDb,
-    getCategoryInDb
+    getGalleryAlbumsInDb
 }

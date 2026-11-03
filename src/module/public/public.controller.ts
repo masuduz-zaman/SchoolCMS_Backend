@@ -36,14 +36,14 @@ const getNotice = catchAsync(async(req,res)=>{
     })
 })
 
-const getCategory = catchAsync(async(req,res)=>{
-    const result = await publicService.getCategoryInDb(req.body);
-
+const getGalleryAlbums = catchAsync(async(req,res)=>{
+    const result = await publicService.getGalleryAlbumsInDb();
+    console.log("Gallery result:", result);
     sendResponse(res,{
         success:true,
-        statusCode:200,
-        message:"Category fetch successfully",
-        data:result
+        statusCode: 200,
+        message: "Gallery Albums fetch successfully",
+        data: result
     })
 })
 
@@ -51,5 +51,5 @@ export const publicController = {
     getProfile,
     updateProfile,
     getNotice,
-    getCategory
+    getGalleryAlbums
 }

@@ -107,17 +107,16 @@ const registrationRequestInDb = async (payload: RegisterUserPayload) => {
 const loginUserIntoDb = async (payload: ILoginUser) => {
   const { email, password } = payload;
 
-  const user = await prisma.user.findUniqueOrThrow({
-    where: {
-      email,
-    },
+  const user = await prisma.user.findUnique({
+    where: { email: email.trim().toLowerCase() },
   });
+  if (!user || !user.password || !(await bcrypt.compare(password, user.password))) {
+  throw Object.assign(new Error("Invalid email or password"), { statusCode: 401 });
+}
 
   if (user.status === "SUSPENDED") {
-    throw new Error(
-      "Your account has been suspended. Please contact support for assistance.",
-    );
-  }
+  throw new Error("Your account has been suspended. Please contact support.");
+}
 
   const isPasswordMatched = await bcrypt.compare(password, user.password);
 
